@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HB Digital | Structure opérationnelle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-dim: rgba(212, 175, 55, 0.15);
+      --gold-glow: rgba(212, 175, 55, 0.08);
+      --dark-bg: #0f1117;
+      --card-bg: #161921;
+      --card-border: rgba(255,255,255,0.06);
+      --surface: #1c1f2a;
+      --text: #e8e8ec;
+      --text-dim: #8b8d97;
+      --text-muted: #5a5c66;
+      --green: #34d399;
+      --blue: #60a5fa;
+      --purple: #a78bfa;
+      --orange: #fb923c;
+      --rose: #fb7185;
+      --cyan: #22d3ee;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--dark-bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      padding: 140px 32px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 32px;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 650px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    /* PRINCIPLE STRIP */
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+
+    .principle {
+      background: var(--card-bg);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .principle i {
+      font-size: 24px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .principle h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .principle p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* TEAM CARDS */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .team-card:hover {
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .team-card.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .card-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .card-accent.gold { background: var(--gold); }
+    .card-accent.green { background: var(--green); }
+    .card-accent.blue { background: var(--blue); }
+    .card-accent.purple { background: var(--purple); }
+    .card-accent.orange { background: var(--orange); }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .card-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card-role {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .role-creative { background: rgba(212, 175, 55, 0.12); color: var(--gold); }
+    .role-strategy { background: rgba(167, 139, 250, 0.12); color: var(--purple); }
+    .role-production { background: rgba(52, 211, 153, 0.12); color: var(--green); }
+    .role-ops { background: rgba(96, 165, 250, 0.12); color: var(--blue); }
+    .role-support { background: rgba(251, 146, 60, 0.12); color: var(--orange); }
+
+    .card-lane {
+      font-size: 15px;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .card-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .card-section-label + .card-section-label {
+      margin-top: 20px;
+    }
+
+    .responsibility-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .responsibility-list li {
+      font-size: 14px;
+      color: var(--text-dim);
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .responsibility-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 13px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .kpi-item {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .kpi-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* SUPPORT CARD (Syname) */
+    .support-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .support-card .card-name {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .support-card .card-lane {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .support-info {
+      flex: 1;
+    }
+
+    .support-scope {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .scope-tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      background: var(--surface);
+      border-radius: 6px;
+      color: var(--text-dim);
+    }
+
+    /* PIPELINE */
+    .pipeline {
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .pipeline-step {
+      flex: 1;
+      min-width: 100px;
+      background: var(--card-bg);
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+    }
+
+    .pipeline-step:first-child { border-radius: 10px 0 0 10px; }
+    .pipeline-step:last-child { border-radius: 0 10px 10px 0; }
+
+    .pipeline-step .step-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .pipeline-step .step-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .pipeline-step .step-owner {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .pipeline-step .step-arrow {
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+      z-index: 2;
+    }
+
+    /* CADENCE */
+    .cadence-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .cadence-day {
+      background: var(--card-bg);
+      padding: 24px 20px;
+    }
+
+    .cadence-day h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--gold);
+    }
+
+    .cadence-day ul {
+      list-style: none;
+    }
+
+    .cadence-day li {
+      font-size: 13px;
+      color: var(--text-dim);
+      padding: 4px 0;
+      line-height: 1.5;
+    }
+
+    .cadence-day li .owner-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* AUTOMATION */
+    .auto-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .auto-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .auto-card i {
+      font-size: 20px;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .auto-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .auto-card p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 60px 32px;
+      border-top: 1px solid var(--card-border);
+      margin-top: 40px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer .footer-brand {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .principles { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: 1fr; }
+      .cadence-grid { grid-template-columns: 1fr; }
+      .pipeline { flex-direction: column; }
+      .pipeline-step { border-radius: 0; }
+      .pipeline-step:first-child { border-radius: 10px 10px 0 0; }
+      .pipeline-step:last-child { border-radius: 0 0 10px 10px; }
+      .pipeline-step .step-arrow { display: none; }
+      .auto-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .support-card { flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 12px; }
+      section { padding: 60px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 120px 20px 60px; }
+      .hero h1 { font-size: 28px; }
+      .principles { grid-template-columns: 1fr; }
+      nav { padding: 0 16px; }
+      .nav-links { gap: 12px; }
+    }
+
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">HB Digital</div>
+    <div class="nav-links">
+      <a href="#equipe">Équipe</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#cadence">Cadence</a>
+      <a href="#automation">Automation</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">
+      <i class="ph ph-buildings"></i>
+      Structure opérationnelle
+    </div>
+    <h1>Chaque contenu passe par <span>un système</span>, pas par une personne</h1>
+    <p>Organisation par responsabilité. Chaque lane a un propriétaire. Chaque propriétaire a des KPIs. Le contenu compose parce que le système compose.</p>
+  </div>
+
+  <!-- PRINCIPLES -->
+  <section>
+    <div class="principles">
+      <div class="principle">
+        <i class="ph ph-user-focus"></i>
+        <h4>Ownership, pas tâches</h4>
+        <p>Chaque fonction a un propriétaire nommé, pas « quelqu'un qui aide ».</p>
+      </div>
+      <div class="principle">
+        <i class="ph ph-flow-arrow"></i>
+        <h4>Pipeline, pas habitude</h4>
+        <p>Chaque pièce de contenu suit un chemin fixe de l'idée au réemploi.</p>
+      </div>
+      <div class="principle">
+        <i class="ph ph-chart-line-up"></i>
+        <h4>Attribution visible</h4>
+        <p>Si le contenu génère du business, on doit savoir lequel et comment.</p>
+      </div>
+      <div class="principle">
+        <i class="ph ph-database"></i>
+        <h4>Capital intellectuel</h4>
+        <p>Chaque hook, transcript et angle gagnant vit dans un système cherchable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="equipe">
+    <div class="section-label">Équipe</div>
+    <div class="section-title">Lanes et propriétaires</div>
+    <div class="section-desc">Cinq personnes, cinq rôles distincts. Les lanes peuvent se chevaucher. La responsabilité, non.</div>
+
+    <div class="team-grid">
+
+      <!-- Deb Ashley -->
+      <div class="team-card">
+        <div class="card-accent gold"></div>
+        <div class="card-header">
+          <div>
+            <div class="card-name">Deb Ashley</div>
+            <div class="card-lane">Creative Director, Copy, Messaging</div>
+          </div>
+          <span class="card-role role-creative">Créatif</span>
+        </div>
+        <div class="card-section-label">Responsabilités</div>
+        <ul class="responsibility-list">
+          <li>Direction créative sur tous les contenus publiés</li>
+          <li>Rédaction des hooks, scripts et copy pour chaque plateforme</li>
+          <li>Construction du système voice-of-customer (objections, FAQ, témoignages)</li>
+          <li>Validation créative avant publication</li>
+          <li>Direction de Syname sur l'exécution design</li>
+        </ul>
+        <div class="card-section-label">KPIs</div>
+        <div class="kpi-grid">
+          <div class="kpi-item">
+            <div class="kpi-label">Hooks produits</div>
+            <div class="kpi-value">10/semaine</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Scripts finalisés</div>
+            <div class="kpi-value">4/semaine</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">VoC entries</div>
+            <div class="kpi-value">5/semaine</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Validation créative</div>
+            <div class="kpi-value">&lt; 24h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deborah -->
+      <div class="team-card">
+        <div class="card-accent purple"></div>
+        <div class="card-header">
+          <div>
+            <div class="card-name">Deborah</div>
+            <div class="card-lane">Strategy, Editorial, Capital intellectuel</div>
+          </div>
+          <span class="card-role role-strategy">Stratégie</span>
+        </div>
+        <div class="card-section-label">Responsabilités</div>
+        <ul class="responsibility-list">
+          <li>Décision éditoriale : quel contenu, pourquoi, pour qui</li>
+          <li>Positionnement et angle pour chaque pièce</li>
+          <li>Construction et maintenance de la bibliothèque de hooks, CTAs et angles gagnants</li>
+          <li>Archivage des transcripts et winning posts</li>
+          <li>Banque d'objections clients pour réemploi</li>
+        </ul>
+        <div class="card-section-label">KPIs</div>
+        <div class="kpi-grid">
+          <div class="kpi-item">
+            <div class="kpi-label">Briefs éditoriaux</div>
+            <div class="kpi-value">4/semaine</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Entrées bibliothèque</div>
+            <div class="kpi-value">8/semaine</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Réemploi de contenu</div>
+            <div class="kpi-value">2 assets/semaine</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Couverture calendrier</div>
+            <div class="kpi-value">100%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daoud -->
+      <div class="team-card">
+        <div class="card-accent green"></div>
+        <div class="card-header">
+          <div>
+            <div class="card-name">Daoud</div>
+            <div class="card-lane">Production vidéo et visuelle</div>
+          </div>
+          <span class="card-role role-production">Production</span>
+        </div>
+        <div class="card-section-label">Responsabilités</div>
+        <ul class="responsibility-list">
+          <li>Tournage de tous les contenus vidéo</li>
+          <li>Montage, post-production, livraison publish-ready</li>
+          <li>Adaptation des formats par plateforme (Reels, YouTube, Stories)</li>
+          <li>Respect du calendrier de production</li>
+          <li>Qualité visuelle et sonore constante</li>
+        </ul>
+        <div class="card-section-label">KPIs</div>
+        <div class="kpi-grid">
+          <div class="kpi-item">
+            <div class="kpi-label">Vidéos livrées</div>
+            <div class="kpi-value">4/semaine</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Délai de livraison</div>
+            <div class="kpi-value">&lt; 48h</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Formats adaptés</div>
+            <div class="kpi-value">3 par vidéo</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Retakes</div>
+            <div class="kpi-value">&lt; 1 par vidéo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CJ -->
+      <div class="team-card">
+        <div class="card-accent blue"></div>
+        <div class="card-header">
+          <div>
+            <div class="card-name">CJ</div>
+            <div class="card-lane">Opérations, Distribution, Attribution</div>
+          </div>
+          <span class="card-role role-ops">Opérations</span>
+        </div>
+        <div class="card-section-label">Responsabilités</div>
+        <ul class="responsibility-list">
+          <li>Exécution du calendrier de publication</li>
+          <li>Distribution sur toutes les plateformes avec packaging adapté</li>
+          <li>UTM tracking et discipline d'attribution</li>
+          <li>Reporting hebdomadaire : quel contenu a produit quoi</li>
+          <li>Cadence de republication des contenus gagnants</li>
+        </ul>
+        <div class="card-section-label">KPIs</div>
+        <div class="kpi-grid">
+          <div class="kpi-item">
+            <div class="kpi-label">Posts publiés à temps</div>
+            <div class="kpi-value">100%</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">UTM coverage</div>
+            <div class="kpi-value">100% des liens</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Rapport hebdo</div>
+            <div class="kpi-value">Chaque vendredi</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-label">Leads attribués</div>
+            <div class="kpi-value">Source identifiée</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Syname - Support row -->
+    <div class="support-card">
+      <div style="flex-shrink: 0;">
+        <div class="card-name">Syname</div>
+        <div class="card-lane">Support design, sous la direction de Deb Ashley</div>
+      </div>
+      <div class="support-info">
+        <span class="card-role role-support" style="margin-bottom: 12px;">Support</span>
+      </div>
+      <div class="support-scope">
+        <span class="scope-tag">Templates</span>
+        <span class="scope-tag">Resize</span>
+        <span class="scope-tag">Gestion de fichiers</span>
+        <span class="scope-tag">QA design</span>
+        <span class="scope-tag">Exports</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section id="pipeline">
+    <div class="section-label">Pipeline</div>
+    <div class="section-title">Chaque contenu suit ce chemin</div>
+    <div class="section-desc">Un long-form produit plusieurs assets. Le pipeline transforme une idée en capital réutilisable.</div>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="step-num">01</div>
+        <div class="step-name">Idée</div>
+        <div class="step-owner">Deborah</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">02</div>
+        <div class="step-name">Hook</div>
+        <div class="step-owner">Deb Ashley</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">03</div>
+        <div class="step-name">Script</div>
+        <div class="step-owner">Deb Ashley</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">04</div>
+        <div class="step-name">Production</div>
+        <div class="step-owner">Daoud</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">05</div>
+        <div class="step-name">Montage</div>
+        <div class="step-owner">Daoud</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">06</div>
+        <div class="step-name">Publish</div>
+        <div class="step-owner">CJ</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">07</div>
+        <div class="step-name">Repurpose</div>
+        <div class="step-owner">CJ + Claude</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">08</div>
+        <div class="step-name">Track</div>
+        <div class="step-owner">CJ</div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">09</div>
+        <div class="step-name">Archive</div>
+        <div class="step-owner">Deborah</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CADENCE -->
+  <section id="cadence">
+    <div class="section-label">Cadence</div>
+    <div class="section-title">Rythme hebdomadaire</div>
+    <div class="section-desc">Ce qui se passe chaque jour. Les lanes fonctionnent en parallèle, pas en séquence.</div>
+
+    <div class="cadence-grid">
+      <div class="cadence-day">
+        <h4>Lundi</h4>
+        <ul>
+          <li>Sync d'équipe (15 min) <span class="owner-tag">Tous</span></li>
+          <li>Revue du calendrier de la semaine <span class="owner-tag">CJ</span></li>
+          <li>Briefs éditoriaux finalisés <span class="owner-tag">Deborah</span></li>
+        </ul>
+      </div>
+      <div class="cadence-day">
+        <h4>Mardi</h4>
+        <ul>
+          <li>Hooks et scripts en production <span class="owner-tag">Deb Ashley</span></li>
+          <li>Tournage si planifié <span class="owner-tag">Daoud</span></li>
+          <li>Templates en cours <span class="owner-tag">Syname</span></li>
+        </ul>
+      </div>
+      <div class="cadence-day">
+        <h4>Mercredi</h4>
+        <ul>
+          <li>Revue créative des assets <span class="owner-tag">Deb Ashley</span></li>
+          <li>Montage en livraison <span class="owner-tag">Daoud</span></li>
+          <li>Mise à jour bibliothèque <span class="owner-tag">Deborah</span></li>
+        </ul>
+      </div>
+      <div class="cadence-day">
+        <h4>Jeudi</h4>
+        <ul>
+          <li>Publication batch <span class="owner-tag">CJ</span></li>
+          <li>Repurposing des contenus <span class="owner-tag">CJ + Claude</span></li>
+          <li>Collecte VoC <span class="owner-tag">Deb Ashley</span></li>
+        </ul>
+      </div>
+      <div class="cadence-day">
+        <h4>Vendredi</h4>
+        <ul>
+          <li>Rapport d'attribution <span class="owner-tag">CJ</span></li>
+          <li>Archive des gagnants <span class="owner-tag">Deborah</span></li>
+          <li>Planning semaine suivante <span class="owner-tag">CJ + Deborah</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTOMATION -->
+  <section id="automation">
+    <div class="section-label">Automation</div>
+    <div class="section-title">Ce que Claude gère</div>
+    <div class="section-desc">L'infrastructure automatisée couvre la distribution, le packaging et l'extraction analytique. Les humains décident. Le système exécute.</div>
+
+    <div class="auto-grid">
+      <div class="auto-card">
+        <i class="ph ph-repeat"></i>
+        <h4>Repurposing</h4>
+        <p>Un long-form devient automatiquement des copies pour LinkedIn, Instagram, X et Facebook avec les bons formats.</p>
+      </div>
+      <div class="auto-card">
+        <i class="ph ph-calendar-check"></i>
+        <h4>Content Calendar</h4>
+        <p>Génération et suivi du calendrier éditorial avec scout automatique chaque semaine.</p>
+      </div>
+      <div class="auto-card">
+        <i class="ph ph-text-aa"></i>
+        <h4>Social Copy</h4>
+        <p>Adaptation du ton et de la longueur par plateforme, en respectant le voice-of-customer.</p>
+      </div>
+      <div class="auto-card">
+        <i class="ph ph-chart-bar"></i>
+        <h4>Analytics Extraction</h4>
+        <p>Extraction des métriques de performance et corrélation contenu/leads pour le rapport de CJ.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><span class="footer-brand">HaitiBrand Digital</span> · Structure opérationnelle · Mai 2026</p>
+    <p style="margin-top: 8px; font-size: 12px;">Le contenu est un système. Le système a des propriétaires. Les propriétaires ont des résultats.</p>
+  </footer>
+
+</body>
+</html>
