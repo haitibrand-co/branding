@@ -9,20 +9,22 @@
 <meta property="og:description" content="Design illimité. Campagnes chaque semaine. Média payant géré. Un forfait mensuel, une équipe dédiée.">
 <meta property="og:type" content="website">
 <link rel="icon" href="https://raw.githubusercontent.com/haitibrand-co/branding/main/HB-favicon-digital.png" type="image/png">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --dark: #1A0E07;
-    --mint: #C9FFE2;
-    --cream: #FFF3E4;
+    --dark: #232932;
+    --gold: #d4af37;
+    --gold-light: #FBF1D3;
+    --gold-muted: #e6cf7a;
+    --gold-dim: #c4a232;
+    --gray-light: #F0F1F3;
     --white: #FFFFFF;
-    --mint-dim: #a8e6c5;
-    --cream-dim: #f0dcc4;
-    --text: #1A0E07;
-    --text-muted: rgba(26, 14, 7, 0.55);
+    --text: #232932;
+    --text-muted: rgba(35, 41, 50, 0.55);
     --radius: 20px;
     --radius-sm: 12px;
     --max-w: 960px;
@@ -46,7 +48,7 @@
     top: 0;
     left: 0;
     height: 3px;
-    background: var(--mint);
+    background: var(--gold);
     z-index: 200;
     width: 0%;
     transition: width 0.1s linear;
@@ -62,7 +64,7 @@
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(26, 14, 7, 0.05);
+    border-bottom: 1px solid rgba(35, 41, 50, 0.05);
     padding: 14px var(--px);
     display: flex;
     align-items: center;
@@ -70,7 +72,7 @@
     transition: box-shadow 0.3s;
   }
 
-  nav.scrolled { box-shadow: 0 2px 24px rgba(26, 14, 7, 0.06); }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(35, 41, 50, 0.06); }
 
   nav .logo-mark {
     display: flex;
@@ -133,7 +135,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--mint);
+    background: var(--gold-light);
     color: var(--dark);
     font-size: 13px;
     font-weight: 600;
@@ -146,7 +148,7 @@
   .hero-badge .pulse {
     width: 8px;
     height: 8px;
-    background: var(--dark);
+    background: var(--gold);
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
   }
@@ -165,7 +167,7 @@
   }
 
   .hero h1 .highlight {
-    background: linear-gradient(120deg, var(--mint) 0%, var(--cream) 100%);
+    background: linear-gradient(120deg, var(--gold) 0%, var(--gold-light) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -193,12 +195,12 @@
     margin-top: 40px;
     transition: all 0.25s;
     letter-spacing: 0.01em;
-    box-shadow: 0 4px 20px rgba(26, 14, 7, 0.15);
+    box-shadow: 0 4px 20px rgba(35, 41, 50, 0.15);
   }
 
-  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26, 14, 7, 0.2); }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(35, 41, 50, 0.2); }
 
-  .hero-cta svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .hero-cta i { font-size: 18px; flex-shrink: 0; }
 
   /* STATS BAR */
   .stats-bar {
@@ -208,7 +210,7 @@
   }
 
   .stats-bar-inner {
-    background: var(--cream);
+    background: var(--gold-light);
     border-radius: var(--radius);
     padding: 48px 40px;
     display: grid;
@@ -225,7 +227,7 @@
     right: -40px;
     width: 160px;
     height: 160px;
-    background: rgba(26, 14, 7, 0.03);
+    background: rgba(35, 41, 50, 0.03);
     border-radius: 50%;
   }
 
@@ -278,7 +280,7 @@
 
   .service-card {
     background: var(--white);
-    border: 1.5px solid rgba(26, 14, 7, 0.07);
+    border: 1.5px solid rgba(35, 41, 50, 0.07);
     border-radius: var(--radius);
     padding: 30px;
     cursor: pointer;
@@ -294,7 +296,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--mint);
+    background: var(--gold-light);
     opacity: 0;
     transition: opacity 0.3s;
     z-index: 0;
@@ -302,27 +304,31 @@
   }
 
   .service-card:hover {
-    border-color: rgba(26, 14, 7, 0.12);
-    box-shadow: 0 8px 32px rgba(26, 14, 7, 0.06);
+    border-color: rgba(35, 41, 50, 0.12);
+    box-shadow: 0 8px 32px rgba(35, 41, 50, 0.06);
     transform: translateY(-2px);
   }
 
   .service-card.active::after { opacity: 1; }
-  .service-card.active { border-color: var(--mint-dim); }
+  .service-card.active { border-color: var(--gold-muted); }
 
   .service-card > * { position: relative; z-index: 1; }
 
   .service-card .card-icon {
     width: 44px;
     height: 44px;
-    background: var(--cream);
+    background: var(--gold-light);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
     margin-bottom: 18px;
     transition: all 0.3s;
+  }
+
+  .service-card .card-icon i {
+    font-size: 20px;
+    color: var(--dark);
   }
 
   .service-card.active .card-icon { background: rgba(255, 255, 255, 0.7); }
@@ -358,17 +364,15 @@
   .card-detail li {
     font-size: 14px;
     padding: 7px 0;
-    border-top: 1px solid rgba(26, 14, 7, 0.08);
+    border-top: 1px solid rgba(35, 41, 50, 0.08);
     display: flex;
     align-items: center;
     gap: 10px;
     line-height: 1.5;
   }
 
-  .card-detail li:before {
-    content: '✓';
-    font-weight: 800;
-    font-size: 11px;
+  .card-detail li i.ph {
+    font-size: 13px;
     color: var(--dark);
     flex-shrink: 0;
     width: 20px;
@@ -386,7 +390,12 @@
     margin-top: 14px;
     font-weight: 500;
     transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
+
+  .service-card .expand-hint i { font-size: 12px; }
 
   .service-card.active .expand-hint { opacity: 0; height: 0; margin: 0; }
 
@@ -409,7 +418,7 @@
     border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
-    border: 1.5px solid rgba(26, 14, 7, 0.1);
+    border: 1.5px solid rgba(35, 41, 50, 0.1);
     background: var(--white);
     color: var(--text-muted);
     cursor: pointer;
@@ -426,7 +435,7 @@
   }
 
   .timeline-content {
-    background: var(--mint);
+    background: var(--gold-light);
     border-radius: var(--radius);
     padding: 44px;
     min-height: 220px;
@@ -441,7 +450,7 @@
     left: -60px;
     width: 200px;
     height: 200px;
-    background: rgba(26, 14, 7, 0.02);
+    background: rgba(35, 41, 50, 0.02);
     border-radius: 50%;
   }
 
@@ -500,8 +509,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
     flex-shrink: 0;
+  }
+
+  .deliverable-item .d-icon i {
+    font-size: 15px;
+    color: var(--dark);
   }
 
   /* PLATFORMS */
@@ -524,7 +537,7 @@
     font-size: 14px;
     font-weight: 600;
     background: var(--white);
-    border: 1.5px solid rgba(26, 14, 7, 0.08);
+    border: 1.5px solid rgba(35, 41, 50, 0.08);
     cursor: pointer;
     transition: all 0.25s;
     font-family: inherit;
@@ -533,13 +546,13 @@
   .platform-btn:hover { border-color: var(--dark); }
 
   .platform-btn.active {
-    background: var(--cream);
-    border-color: var(--cream-dim);
-    box-shadow: 0 2px 12px rgba(26, 14, 7, 0.06);
+    background: var(--gold-light);
+    border-color: var(--gold-muted);
+    box-shadow: 0 2px 12px rgba(35, 41, 50, 0.06);
   }
 
   .platform-detail {
-    background: var(--cream);
+    background: var(--gold-light);
     border-radius: var(--radius);
     padding: 44px;
     display: none;
@@ -558,7 +571,7 @@
   }
 
   .format-chip {
-    background: rgba(26, 14, 7, 0.05);
+    background: rgba(35, 41, 50, 0.05);
     border-radius: 50px;
     padding: 9px 18px;
     font-size: 13px;
@@ -566,7 +579,7 @@
     transition: all 0.2s;
   }
 
-  .format-chip:hover { background: rgba(26, 14, 7, 0.09); transform: translateY(-1px); }
+  .format-chip:hover { background: rgba(35, 41, 50, 0.09); transform: translateY(-1px); }
 
   /* COMPARISON */
   .comparison {
@@ -587,18 +600,18 @@
   }
 
   .compare-col.without {
-    background: #f7f7f6;
-    border: 1px solid rgba(26, 14, 7, 0.05);
+    background: var(--gray-light);
+    border: 1px solid rgba(35, 41, 50, 0.05);
   }
 
-  .compare-col.with { background: var(--mint); }
+  .compare-col.with { background: var(--gold-light); }
 
   .compare-col h3 {
     font-size: 17px;
     font-weight: 700;
     margin-bottom: 24px;
     padding-bottom: 18px;
-    border-bottom: 1.5px solid rgba(26, 14, 7, 0.08);
+    border-bottom: 1.5px solid rgba(35, 41, 50, 0.08);
   }
 
   .compare-col ul { list-style: none; }
@@ -619,19 +632,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
-    font-weight: 800;
     flex-shrink: 0;
     margin-top: 1px;
   }
 
+  .compare-col li .check-icon i { font-size: 12px; }
+
   .compare-col.without .check-icon {
-    background: rgba(26, 14, 7, 0.06);
-    color: rgba(26, 14, 7, 0.25);
+    background: rgba(35, 41, 50, 0.06);
+    color: rgba(35, 41, 50, 0.25);
   }
 
   .compare-col.with .check-icon {
-    background: rgba(26, 14, 7, 0.08);
+    background: rgba(35, 41, 50, 0.08);
     color: var(--dark);
   }
 
@@ -659,7 +672,7 @@
     right: -100px;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(201, 255, 226, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
     border-radius: 50%;
   }
 
@@ -670,7 +683,7 @@
     left: -80px;
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(255, 243, 228, 0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
     border-radius: 50%;
   }
 
@@ -681,7 +694,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--mint);
+    color: var(--gold);
     margin-bottom: 16px;
   }
 
@@ -695,7 +708,7 @@
 
   .cta-box p {
     font-size: 16px;
-    color: rgba(255, 243, 228, 0.65);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 40px;
     max-width: 480px;
     margin-left: auto;
@@ -707,7 +720,7 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: var(--mint);
+    background: var(--gold);
     color: var(--dark);
     padding: 16px 40px;
     border-radius: 50px;
@@ -716,26 +729,25 @@
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     letter-spacing: 0.01em;
-    box-shadow: 0 4px 24px rgba(201, 255, 226, 0.25);
+    box-shadow: 0 4px 24px rgba(212, 175, 55, 0.3);
   }
 
   .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(201, 255, 226, 0.35);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
   }
 
-  .cta-button svg {
-    width: 20px;
-    height: 20px;
+  .cta-button i {
+    font-size: 20px;
     transition: transform 0.3s;
   }
 
-  .cta-button:hover svg { transform: translateX(3px); }
+  .cta-button:hover i { transform: translateX(3px); }
 
   .cta-spots {
     margin-top: 20px;
     font-size: 13px;
-    color: rgba(255, 243, 228, 0.45);
+    color: rgba(255, 255, 255, 0.4);
     font-weight: 500;
   }
 
@@ -777,11 +789,11 @@
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: rgba(255, 243, 228, 0.06);
+    background: rgba(255, 255, 255, 0.06);
     transition: all 0.2s;
   }
 
-  .footer-socials a:hover { background: rgba(255, 243, 228, 0.12); transform: translateY(-1px); }
+  .footer-socials a:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-1px); }
 
   .footer-socials a img {
     width: 16px;
@@ -789,13 +801,13 @@
   }
 
   .footer-meta {
-    border-top: 1px solid rgba(255, 243, 228, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 20px;
   }
 
   .footer-meta p {
     font-size: 12px;
-    color: var(--cream);
+    color: #EAEEF3;
     opacity: 0.5;
     line-height: 1.6;
     margin: 0;
@@ -804,7 +816,7 @@
   .footer-meta p + p { margin-top: 4px; }
 
   .footer-meta a {
-    color: var(--cream);
+    color: #EAEEF3;
     text-decoration: underline;
     text-underline-offset: 2px;
     opacity: 0.5;
@@ -826,7 +838,7 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(26, 14, 7, 0.06);
+    border-top: 1px solid rgba(35, 41, 50, 0.06);
     transform: translateY(100%);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -849,7 +861,7 @@
     letter-spacing: 0.01em;
   }
 
-  .mobile-cta a svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .mobile-cta a i { font-size: 18px; flex-shrink: 0; }
 
   /* ANIMATIONS */
   .fade-in {
@@ -962,7 +974,7 @@
   <h1>Votre équipe créative et média, <span class="highlight">en abonnement</span></h1>
   <p>Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet, pas de discussions sur la portée.</p>
   <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="hero-cta">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <i class="ph ph-calendar-blank"></i>
     Réservez 15 minutes avec nous
   </a>
 </section>
@@ -997,94 +1009,94 @@
 
 <div class="services">
   <div class="service-card fade-in stagger-1" onclick="toggleCard(this)">
-    <div class="card-icon">🎨</div>
+    <div class="card-icon"><i class="ph ph-palette"></i></div>
     <h3>Design illimité</h3>
     <div class="card-summary">Demandes illimitées, livrées en 24 à 48 heures.</div>
     <div class="card-detail">
       <ul>
-        <li>Posts réseaux sociaux (carrousels, stories, reels covers)</li>
-        <li>Bannières web et email</li>
-        <li>Supports print (flyers, affiches, roll-ups)</li>
-        <li>Déclinaisons de marque et adaptations</li>
-        <li>Révisions illimitées jusqu'à validation</li>
+        <li><i class="ph ph-check"></i>Posts réseaux sociaux (carrousels, stories, reels covers)</li>
+        <li><i class="ph ph-check"></i>Bannières web et email</li>
+        <li><i class="ph ph-check"></i>Supports print (flyers, affiches, roll-ups)</li>
+        <li><i class="ph ph-check"></i>Déclinaisons de marque et adaptations</li>
+        <li><i class="ph ph-check"></i>Révisions illimitées jusqu'à validation</li>
       </ul>
     </div>
-    <div class="expand-hint">↓ Voir le détail</div>
+    <div class="expand-hint"><i class="ph ph-caret-down"></i> Voir le détail</div>
   </div>
 
   <div class="service-card fade-in stagger-2" onclick="toggleCard(this)">
-    <div class="card-icon">📢</div>
+    <div class="card-icon"><i class="ph ph-megaphone-simple"></i></div>
     <h3>Campagnes créatives</h3>
     <div class="card-summary">Concepts de campagne livrés chaque semaine.</div>
     <div class="card-detail">
       <ul>
-        <li>Concepts créatifs originaux avec direction artistique</li>
-        <li>Copywriting en français, créole et anglais</li>
-        <li>Storyboards pour vidéos et reels</li>
-        <li>Déclinaison sur tous les canaux (digital, print, OOH)</li>
+        <li><i class="ph ph-check"></i>Concepts créatifs originaux avec direction artistique</li>
+        <li><i class="ph ph-check"></i>Copywriting en français, créole et anglais</li>
+        <li><i class="ph ph-check"></i>Storyboards pour vidéos et reels</li>
+        <li><i class="ph ph-check"></i>Déclinaison sur tous les canaux (digital, print, OOH)</li>
       </ul>
     </div>
-    <div class="expand-hint">↓ Voir le détail</div>
+    <div class="expand-hint"><i class="ph ph-caret-down"></i> Voir le détail</div>
   </div>
 
   <div class="service-card fade-in stagger-3" onclick="toggleCard(this)">
-    <div class="card-icon">📊</div>
+    <div class="card-icon"><i class="ph ph-chart-bar"></i></div>
     <h3>Média payant</h3>
     <div class="card-summary">Publicités produites et gérées sur Meta, TikTok et X.</div>
     <div class="card-detail">
       <ul>
-        <li>Création des audiences et ciblage géographique Haïti</li>
-        <li>A/B testing des créatives</li>
-        <li>Optimisation quotidienne des budgets</li>
-        <li>Reporting hebdomadaire avec ROAS et coût par résultat</li>
+        <li><i class="ph ph-check"></i>Création des audiences et ciblage géographique Haïti</li>
+        <li><i class="ph ph-check"></i>A/B testing des créatives</li>
+        <li><i class="ph ph-check"></i>Optimisation quotidienne des budgets</li>
+        <li><i class="ph ph-check"></i>Reporting hebdomadaire avec ROAS et coût par résultat</li>
       </ul>
     </div>
-    <div class="expand-hint">↓ Voir le détail</div>
+    <div class="expand-hint"><i class="ph ph-caret-down"></i> Voir le détail</div>
   </div>
 
   <div class="service-card fade-in stagger-4" onclick="toggleCard(this)">
-    <div class="card-icon">🎬</div>
+    <div class="card-icon"><i class="ph ph-video-camera"></i></div>
     <h3>Contenu UGC</h3>
     <div class="card-summary">Du contenu créé par de vrais créateurs haïtiens.</div>
     <div class="card-detail">
       <ul>
-        <li>Casting et briefing des créateurs</li>
-        <li>Production de vidéos authentiques pour ads</li>
-        <li>Formats optimisés par plateforme (9:16, 1:1, 16:9)</li>
-        <li>Droits d'utilisation commerciale inclus</li>
+        <li><i class="ph ph-check"></i>Casting et briefing des créateurs</li>
+        <li><i class="ph ph-check"></i>Production de vidéos authentiques pour ads</li>
+        <li><i class="ph ph-check"></i>Formats optimisés par plateforme (9:16, 1:1, 16:9)</li>
+        <li><i class="ph ph-check"></i>Droits d'utilisation commerciale inclus</li>
       </ul>
     </div>
-    <div class="expand-hint">↓ Voir le détail</div>
+    <div class="expand-hint"><i class="ph ph-caret-down"></i> Voir le détail</div>
   </div>
 
   <div class="service-card fade-in stagger-5" onclick="toggleCard(this)">
-    <div class="card-icon">📈</div>
+    <div class="card-icon"><i class="ph ph-chart-line-up"></i></div>
     <h3>Rapports mensuels</h3>
     <div class="card-summary">Chaque dollar relié à votre chiffre d'affaires.</div>
     <div class="card-detail">
       <ul>
-        <li>Dashboard interactif avec KPIs en temps réel</li>
-        <li>Attribution des conversions par canal</li>
-        <li>Recommandations stratégiques pour le mois suivant</li>
-        <li>Analyse concurrentielle mensuelle</li>
+        <li><i class="ph ph-check"></i>Dashboard interactif avec KPIs en temps réel</li>
+        <li><i class="ph ph-check"></i>Attribution des conversions par canal</li>
+        <li><i class="ph ph-check"></i>Recommandations stratégiques pour le mois suivant</li>
+        <li><i class="ph ph-check"></i>Analyse concurrentielle mensuelle</li>
       </ul>
     </div>
-    <div class="expand-hint">↓ Voir le détail</div>
+    <div class="expand-hint"><i class="ph ph-caret-down"></i> Voir le détail</div>
   </div>
 
   <div class="service-card fade-in stagger-6" onclick="toggleCard(this)">
-    <div class="card-icon">⚡</div>
+    <div class="card-icon"><i class="ph ph-lightning"></i></div>
     <h3>Livraison rapide</h3>
     <div class="card-summary">Pas de file d'attente. Votre équipe dédiée.</div>
     <div class="card-detail">
       <ul>
-        <li>Délai standard : 24-48h par demande</li>
-        <li>Canal Slack ou WhatsApp dédié</li>
-        <li>Project manager assigné à votre compte</li>
-        <li>Nombre de demandes actives illimité</li>
+        <li><i class="ph ph-check"></i>Délai standard : 24-48h par demande</li>
+        <li><i class="ph ph-check"></i>Canal Slack ou WhatsApp dédié</li>
+        <li><i class="ph ph-check"></i>Project manager assigné à votre compte</li>
+        <li><i class="ph ph-check"></i>Nombre de demandes actives illimité</li>
       </ul>
     </div>
-    <div class="expand-hint">↓ Voir le détail</div>
+    <div class="expand-hint"><i class="ph ph-caret-down"></i> Voir le détail</div>
   </div>
 </div>
 
@@ -1107,10 +1119,10 @@
       <h3>Onboarding et premier sprint</h3>
       <div class="week-desc">Audit de votre présence actuelle, alignement stratégique, premiers designs livrés.</div>
       <div class="deliverable-grid">
-        <div class="deliverable-item"><div class="d-icon">🔍</div>Audit digital complet</div>
-        <div class="deliverable-item"><div class="d-icon">🎯</div>Stratégie de campagne</div>
-        <div class="deliverable-item"><div class="d-icon">🎨</div>15 visuels réseaux sociaux</div>
-        <div class="deliverable-item"><div class="d-icon">📋</div>Calendrier éditorial mois 1</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-magnifying-glass"></i></div>Audit digital complet</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-crosshair"></i></div>Stratégie de campagne</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-palette"></i></div>15 visuels réseaux sociaux</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-calendar-blank"></i></div>Calendrier éditorial mois 1</div>
       </div>
     </div>
 
@@ -1118,10 +1130,10 @@
       <h3>Première campagne en production</h3>
       <div class="week-desc">Lancement des premières publicités, casting UGC, optimisation des audiences.</div>
       <div class="deliverable-grid">
-        <div class="deliverable-item"><div class="d-icon">📢</div>Campagne Meta lancée</div>
-        <div class="deliverable-item"><div class="d-icon">🎬</div>2 vidéos UGC produites</div>
-        <div class="deliverable-item"><div class="d-icon">🎨</div>30+ visuels supplémentaires</div>
-        <div class="deliverable-item"><div class="d-icon">📊</div>Premiers résultats A/B</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-megaphone-simple"></i></div>Campagne Meta lancée</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-video-camera"></i></div>2 vidéos UGC produites</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-palette"></i></div>30+ visuels supplémentaires</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-chart-bar"></i></div>Premiers résultats A/B</div>
       </div>
     </div>
 
@@ -1129,10 +1141,10 @@
       <h3>Montée en puissance</h3>
       <div class="week-desc">Deuxième plateforme activée, scaling des créatives performantes, nouvelles audiences.</div>
       <div class="deliverable-grid">
-        <div class="deliverable-item"><div class="d-icon">📱</div>TikTok Ads activé</div>
-        <div class="deliverable-item"><div class="d-icon">🔄</div>Rotation des créatives</div>
-        <div class="deliverable-item"><div class="d-icon">🎬</div>4 vidéos UGC supplémentaires</div>
-        <div class="deliverable-item"><div class="d-icon">🎨</div>Déclinaisons campagne print</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-device-mobile"></i></div>TikTok Ads activé</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-arrows-clockwise"></i></div>Rotation des créatives</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-video-camera"></i></div>4 vidéos UGC supplémentaires</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-palette"></i></div>Déclinaisons campagne print</div>
       </div>
     </div>
 
@@ -1140,10 +1152,10 @@
       <h3>Optimisation et rapport</h3>
       <div class="week-desc">Analyse complète du premier mois, recommandations pour le mois suivant.</div>
       <div class="deliverable-grid">
-        <div class="deliverable-item"><div class="d-icon">📈</div>Rapport de performance complet</div>
-        <div class="deliverable-item"><div class="d-icon">💡</div>Recommandations mois 2</div>
-        <div class="deliverable-item"><div class="d-icon">🎯</div>Nouvelles audiences identifiées</div>
-        <div class="deliverable-item"><div class="d-icon">🎨</div>120+ designs livrés au total</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-chart-line-up"></i></div>Rapport de performance complet</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-lightbulb"></i></div>Recommandations mois 2</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-crosshair"></i></div>Nouvelles audiences identifiées</div>
+        <div class="deliverable-item"><div class="d-icon"><i class="ph ph-palette"></i></div>120+ designs livrés au total</div>
       </div>
     </div>
   </div>
@@ -1221,23 +1233,23 @@
     <div class="compare-col without">
       <h3>Agence traditionnelle</h3>
       <ul>
-        <li><span class="check-icon">✕</span>Devis pour chaque projet</li>
-        <li><span class="check-icon">✕</span>Délai de 2 à 4 semaines par campagne</li>
-        <li><span class="check-icon">✕</span>Révisions facturées en supplément</li>
-        <li><span class="check-icon">✕</span>Pas de visibilité sur les résultats</li>
-        <li><span class="check-icon">✕</span>Contrat annuel rigide</li>
-        <li><span class="check-icon">✕</span>Équipe partagée entre 20+ clients</li>
+        <li><span class="check-icon"><i class="ph ph-x"></i></span>Devis pour chaque projet</li>
+        <li><span class="check-icon"><i class="ph ph-x"></i></span>Délai de 2 à 4 semaines par campagne</li>
+        <li><span class="check-icon"><i class="ph ph-x"></i></span>Révisions facturées en supplément</li>
+        <li><span class="check-icon"><i class="ph ph-x"></i></span>Pas de visibilité sur les résultats</li>
+        <li><span class="check-icon"><i class="ph ph-x"></i></span>Contrat annuel rigide</li>
+        <li><span class="check-icon"><i class="ph ph-x"></i></span>Équipe partagée entre 20+ clients</li>
       </ul>
     </div>
     <div class="compare-col with">
       <h3>HaitiBrand Illimité</h3>
       <ul>
-        <li><span class="check-icon">✓</span>Un forfait, demandes illimitées</li>
-        <li><span class="check-icon">✓</span>Livraison en 24 à 48 heures</li>
-        <li><span class="check-icon">✓</span>Révisions illimitées incluses</li>
-        <li><span class="check-icon">✓</span>Rapport mensuel relié au chiffre d'affaires</li>
-        <li><span class="check-icon">✓</span>Flexibilité mensuelle, sans engagement long</li>
-        <li><span class="check-icon">✓</span>Équipe dédiée, cohorte limitée à 8 marques</li>
+        <li><span class="check-icon"><i class="ph ph-check"></i></span>Un forfait, demandes illimitées</li>
+        <li><span class="check-icon"><i class="ph ph-check"></i></span>Livraison en 24 à 48 heures</li>
+        <li><span class="check-icon"><i class="ph ph-check"></i></span>Révisions illimitées incluses</li>
+        <li><span class="check-icon"><i class="ph ph-check"></i></span>Rapport mensuel relié au chiffre d'affaires</li>
+        <li><span class="check-icon"><i class="ph ph-check"></i></span>Flexibilité mensuelle, sans engagement long</li>
+        <li><span class="check-icon"><i class="ph ph-check"></i></span>Équipe dédiée, cohorte limitée à 8 marques</li>
       </ul>
     </div>
   </div>
@@ -1251,7 +1263,7 @@
     <p>Un appel de 15 minutes pour confirmer que le forfait illimité correspond à votre marque et vos objectifs.</p>
     <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="cta-button">
       Réservez 15 minutes avec nous
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <i class="ph ph-arrow-right"></i>
     </a>
     <div class="cta-spots">La cohorte ferme à 8 marques</div>
   </div>
@@ -1292,7 +1304,7 @@
 <!-- MOBILE STICKY CTA -->
 <div class="mobile-cta" id="mobileCta">
   <a href="https://cal.com/haitibrand" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <i class="ph ph-calendar-blank"></i>
     Réservez 15 minutes
   </a>
 </div>
