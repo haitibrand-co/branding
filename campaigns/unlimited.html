@@ -4,8 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HaitiBrand — Votre équipe créative et média, en abonnement</title>
+<meta name="description" content="Design illimité, campagnes chaque semaine, média payant sur Meta, TikTok et X. Un seul forfait mensuel pour votre marque.">
+<meta property="og:title" content="HaitiBrand — Équipe créative et média, en abonnement">
+<meta property="og:description" content="Design illimité. Campagnes chaque semaine. Média payant géré. Un forfait mensuel, une équipe dédiée.">
+<meta property="og:type" content="website">
+<link rel="icon" href="https://raw.githubusercontent.com/haitibrand-co/branding/main/HB-favicon-digital.png" type="image/png">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -17,9 +22,11 @@
     --mint-dim: #a8e6c5;
     --cream-dim: #f0dcc4;
     --text: #1A0E07;
-    --text-muted: rgba(26, 14, 7, 0.6);
-    --radius: 16px;
-    --radius-sm: 10px;
+    --text-muted: rgba(26, 14, 7, 0.55);
+    --radius: 20px;
+    --radius-sm: 12px;
+    --max-w: 960px;
+    --px: 32px;
   }
 
   html { scroll-behavior: smooth; }
@@ -30,6 +37,19 @@
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* SCROLL PROGRESS */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--mint);
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
   }
 
   /* NAV */
@@ -40,25 +60,42 @@
     right: 0;
     z-index: 100;
     background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(26, 14, 7, 0.06);
-    padding: 16px 32px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(26, 14, 7, 0.05);
+    padding: 14px var(--px);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: box-shadow 0.3s;
   }
 
-  nav .logo {
+  nav.scrolled { box-shadow: 0 2px 24px rgba(26, 14, 7, 0.06); }
+
+  nav .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  nav .logo-mark img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  nav .logo-mark span {
     font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    font-weight: 700;
     color: var(--dark);
+    letter-spacing: -0.01em;
   }
 
   nav .nav-links {
     display: flex;
-    gap: 24px;
+    align-items: center;
+    gap: 28px;
   }
 
   nav .nav-links a {
@@ -74,47 +111,71 @@
   .nav-cta {
     background: var(--dark);
     color: var(--white) !important;
-    padding: 8px 20px;
+    padding: 9px 22px;
     border-radius: 50px;
     font-size: 13px !important;
     font-weight: 600 !important;
-    transition: opacity 0.2s;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
   }
 
-  .nav-cta:hover { opacity: 0.85; }
+  .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
 
   /* HERO */
   .hero {
-    padding: 140px 32px 80px;
-    max-width: 960px;
+    padding: 140px var(--px) 80px;
+    max-width: var(--max-w);
     margin: 0 auto;
+    position: relative;
   }
 
   .hero-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     background: var(--mint);
     color: var(--dark);
     font-size: 13px;
     font-weight: 600;
-    padding: 6px 16px;
+    padding: 8px 18px;
     border-radius: 50px;
-    margin-bottom: 24px;
-    letter-spacing: 0.02em;
+    margin-bottom: 28px;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-badge .pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--dark);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
   }
 
   .hero h1 {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    max-width: 700px;
+    font-size: clamp(38px, 5.5vw, 60px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 680px;
+  }
+
+  .hero h1 .highlight {
+    background: linear-gradient(120deg, var(--mint) 0%, var(--cream) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .hero p {
     font-size: 18px;
     color: var(--text-muted);
-    max-width: 540px;
-    margin-top: 20px;
+    max-width: 520px;
+    margin-top: 22px;
     line-height: 1.7;
   }
 
@@ -124,53 +185,62 @@
     gap: 10px;
     background: var(--dark);
     color: var(--white);
-    padding: 14px 32px;
+    padding: 15px 34px;
     border-radius: 50px;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    margin-top: 36px;
-    transition: transform 0.2s, opacity 0.2s;
-    letter-spacing: 0.02em;
+    margin-top: 40px;
+    transition: all 0.25s;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 20px rgba(26, 14, 7, 0.15);
   }
 
-  .hero-cta:hover { transform: translateY(-1px); opacity: 0.9; }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26, 14, 7, 0.2); }
 
-  .hero-cta svg { width: 18px; height: 18px; }
+  .hero-cta svg { width: 18px; height: 18px; flex-shrink: 0; }
 
   /* STATS BAR */
   .stats-bar {
-    max-width: 960px;
-    margin: 0 auto 80px;
-    padding: 0 32px;
+    max-width: var(--max-w);
+    margin: 0 auto 96px;
+    padding: 0 var(--px);
   }
 
   .stats-bar-inner {
     background: var(--cream);
     border-radius: var(--radius);
-    padding: 40px;
+    padding: 48px 40px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .stat-item {
-    text-align: center;
-    cursor: default;
-    transition: transform 0.2s;
+  .stats-bar-inner::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    background: rgba(26, 14, 7, 0.03);
+    border-radius: 50%;
   }
 
-  .stat-item:hover { transform: translateY(-2px); }
+  .stat-item { text-align: center; position: relative; z-index: 1; }
 
   .stat-number {
-    font-size: 42px;
-    font-weight: 700;
+    font-size: 48px;
+    font-weight: 800;
     line-height: 1;
     color: var(--dark);
+    letter-spacing: -0.02em;
   }
 
   .stat-label {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-muted);
     margin-top: 8px;
     font-weight: 500;
@@ -178,72 +248,88 @@
 
   /* SECTION HEADERS */
   .section-header {
-    max-width: 960px;
+    max-width: var(--max-w);
     margin: 0 auto;
-    padding: 0 32px 40px;
+    padding: 0 var(--px) 44px;
   }
 
   .section-header h2 {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
   .section-header p {
     color: var(--text-muted);
-    margin-top: 8px;
+    margin-top: 10px;
     font-size: 16px;
   }
 
   /* SERVICE CARDS */
   .services {
-    max-width: 960px;
-    margin: 0 auto 80px;
-    padding: 0 32px;
+    max-width: var(--max-w);
+    margin: 0 auto 96px;
+    padding: 0 var(--px);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 14px;
   }
 
   .service-card {
     background: var(--white);
-    border: 1px solid rgba(26, 14, 7, 0.08);
+    border: 1.5px solid rgba(26, 14, 7, 0.07);
     border-radius: var(--radius);
-    padding: 28px;
+    padding: 30px;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
   }
 
-  .service-card:hover {
-    border-color: rgba(26, 14, 7, 0.15);
-    box-shadow: 0 4px 24px rgba(26, 14, 7, 0.06);
+  .service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--mint);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 0;
+    border-radius: var(--radius);
   }
 
-  .service-card.active {
-    background: var(--mint);
-    border-color: var(--mint-dim);
+  .service-card:hover {
+    border-color: rgba(26, 14, 7, 0.12);
+    box-shadow: 0 8px 32px rgba(26, 14, 7, 0.06);
+    transform: translateY(-2px);
   }
+
+  .service-card.active::after { opacity: 1; }
+  .service-card.active { border-color: var(--mint-dim); }
+
+  .service-card > * { position: relative; z-index: 1; }
 
   .service-card .card-icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: var(--cream);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    margin-bottom: 16px;
-    transition: background 0.25s;
+    margin-bottom: 18px;
+    transition: all 0.3s;
   }
 
-  .service-card.active .card-icon { background: rgba(26, 14, 7, 0.08); }
+  .service-card.active .card-icon { background: rgba(255, 255, 255, 0.7); }
 
   .service-card h3 {
     font-size: 17px;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 6px;
   }
 
@@ -256,73 +342,79 @@
   .service-card .card-detail {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s ease, margin-top 0.35s ease, opacity 0.35s ease;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.3s, opacity 0.3s;
     opacity: 0;
     margin-top: 0;
   }
 
   .service-card.active .card-detail {
-    max-height: 300px;
+    max-height: 320px;
     opacity: 1;
-    margin-top: 16px;
+    margin-top: 18px;
   }
 
-  .card-detail ul {
-    list-style: none;
-    padding: 0;
-  }
+  .card-detail ul { list-style: none; }
 
   .card-detail li {
     font-size: 14px;
-    padding: 6px 0;
+    padding: 7px 0;
     border-top: 1px solid rgba(26, 14, 7, 0.08);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    line-height: 1.5;
   }
 
   .card-detail li:before {
     content: '✓';
-    font-weight: 700;
-    font-size: 12px;
+    font-weight: 800;
+    font-size: 11px;
     color: var(--dark);
     flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .service-card .expand-hint {
     font-size: 12px;
     color: var(--text-muted);
-    margin-top: 12px;
+    margin-top: 14px;
     font-weight: 500;
     transition: opacity 0.2s;
   }
 
-  .service-card.active .expand-hint { opacity: 0; }
+  .service-card.active .expand-hint { opacity: 0; height: 0; margin: 0; }
 
   /* TIMELINE */
   .timeline-section {
-    max-width: 960px;
-    margin: 0 auto 80px;
-    padding: 0 32px;
+    max-width: var(--max-w);
+    margin: 0 auto 96px;
+    padding: 0 var(--px);
   }
 
   .timeline-tabs {
     display: flex;
     gap: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
   }
 
   .timeline-tab {
-    padding: 10px 20px;
+    padding: 10px 22px;
     border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
-    border: 1px solid rgba(26, 14, 7, 0.12);
+    border: 1.5px solid rgba(26, 14, 7, 0.1);
     background: var(--white);
     color: var(--text-muted);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s;
+    font-family: inherit;
   }
 
   .timeline-tab:hover { border-color: var(--dark); color: var(--dark); }
@@ -336,66 +428,93 @@
   .timeline-content {
     background: var(--mint);
     border-radius: var(--radius);
-    padding: 40px;
-    min-height: 200px;
+    padding: 44px;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .timeline-panel { display: none; }
+  .timeline-content::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    background: rgba(26, 14, 7, 0.02);
+    border-radius: 50%;
+  }
+
+  .timeline-panel {
+    display: none;
+    animation: panelIn 0.35s ease;
+  }
+
   .timeline-panel.active { display: block; }
 
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .timeline-panel h3 {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 800;
     margin-bottom: 8px;
+    letter-spacing: -0.01em;
   }
 
   .timeline-panel .week-desc {
     font-size: 15px;
     color: var(--text-muted);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     line-height: 1.6;
   }
 
   .deliverable-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .deliverable-item {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(8px);
     border-radius: var(--radius-sm);
-    padding: 14px 16px;
+    padding: 16px;
     font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    transition: transform 0.2s;
   }
 
+  .deliverable-item:hover { transform: translateX(4px); }
+
   .deliverable-item .d-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 15px;
     flex-shrink: 0;
   }
 
   /* PLATFORMS */
   .platforms-section {
-    max-width: 960px;
-    margin: 0 auto 80px;
-    padding: 0 32px;
+    max-width: var(--max-w);
+    margin: 0 auto 96px;
+    padding: 0 var(--px);
   }
 
   .platform-toggle {
     display: flex;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 10px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
   }
 
@@ -405,28 +524,32 @@
     font-size: 14px;
     font-weight: 600;
     background: var(--white);
-    border: 1px solid rgba(26, 14, 7, 0.1);
+    border: 1.5px solid rgba(26, 14, 7, 0.08);
     cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    transition: all 0.25s;
+    font-family: inherit;
   }
 
   .platform-btn:hover { border-color: var(--dark); }
-  .platform-btn.active { background: var(--cream); border-color: var(--cream-dim); }
+
+  .platform-btn.active {
+    background: var(--cream);
+    border-color: var(--cream-dim);
+    box-shadow: 0 2px 12px rgba(26, 14, 7, 0.06);
+  }
 
   .platform-detail {
     background: var(--cream);
     border-radius: var(--radius);
-    padding: 40px;
+    padding: 44px;
     display: none;
+    animation: panelIn 0.35s ease;
   }
 
   .platform-detail.active { display: block; }
 
-  .platform-detail h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-  .platform-detail .plat-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; }
+  .platform-detail h3 { font-size: 22px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .platform-detail .plat-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; }
 
   .format-chips {
     display: flex;
@@ -435,149 +558,304 @@
   }
 
   .format-chip {
-    background: rgba(26, 14, 7, 0.06);
+    background: rgba(26, 14, 7, 0.05);
     border-radius: 50px;
-    padding: 8px 16px;
+    padding: 9px 18px;
     font-size: 13px;
     font-weight: 500;
+    transition: all 0.2s;
   }
+
+  .format-chip:hover { background: rgba(26, 14, 7, 0.09); transform: translateY(-1px); }
 
   /* COMPARISON */
   .comparison {
-    max-width: 960px;
-    margin: 0 auto 80px;
-    padding: 0 32px;
+    max-width: var(--max-w);
+    margin: 0 auto 96px;
+    padding: 0 var(--px);
   }
 
   .comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
   .compare-col {
     border-radius: var(--radius);
-    padding: 36px 28px;
+    padding: 40px 32px;
   }
 
   .compare-col.without {
-    background: #f5f5f5;
-    border: 1px solid rgba(26, 14, 7, 0.06);
+    background: #f7f7f6;
+    border: 1px solid rgba(26, 14, 7, 0.05);
   }
 
-  .compare-col.with {
-    background: var(--mint);
-  }
+  .compare-col.with { background: var(--mint); }
 
   .compare-col h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(26, 14, 7, 0.1);
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1.5px solid rgba(26, 14, 7, 0.08);
   }
 
-  .compare-col ul {
-    list-style: none;
-    padding: 0;
-  }
+  .compare-col ul { list-style: none; }
 
   .compare-col li {
     font-size: 14px;
-    padding: 8px 0;
+    padding: 10px 0;
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
     line-height: 1.5;
   }
 
-  .compare-col.without li:before {
-    content: '✕';
-    color: rgba(26, 14, 7, 0.3);
-    font-weight: 700;
-    font-size: 12px;
-    margin-top: 2px;
+  .compare-col li .check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
     flex-shrink: 0;
+    margin-top: 1px;
   }
 
-  .compare-col.with li:before {
-    content: '✓';
+  .compare-col.without .check-icon {
+    background: rgba(26, 14, 7, 0.06);
+    color: rgba(26, 14, 7, 0.25);
+  }
+
+  .compare-col.with .check-icon {
+    background: rgba(26, 14, 7, 0.08);
     color: var(--dark);
-    font-weight: 700;
-    font-size: 12px;
-    margin-top: 2px;
-    flex-shrink: 0;
   }
 
   /* CTA SECTION */
   .cta-section {
-    max-width: 960px;
-    margin: 0 auto 80px;
-    padding: 0 32px;
+    max-width: var(--max-w);
+    margin: 0 auto 0;
+    padding: 0 var(--px) 48px;
   }
 
   .cta-box {
     background: var(--dark);
     border-radius: var(--radius);
-    padding: 60px 48px;
+    padding: 72px 56px;
     text-align: center;
     color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201, 255, 226, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cta-box::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 243, 228, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cta-box > * { position: relative; z-index: 1; }
+
+  .cta-box .cta-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--mint);
+    margin-bottom: 16px;
   }
 
   .cta-box h2 {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 12px;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    line-height: 1.1;
   }
 
   .cta-box p {
     font-size: 16px;
-    color: rgba(255, 243, 228, 0.7);
-    margin-bottom: 32px;
-    max-width: 460px;
+    color: rgba(255, 243, 228, 0.65);
+    margin-bottom: 40px;
+    max-width: 480px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.65;
   }
 
-  .cta-box a {
+  .cta-button {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: var(--mint);
     color: var(--dark);
-    padding: 14px 32px;
+    padding: 16px 40px;
     border-radius: 50px;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     text-decoration: none;
-    transition: transform 0.2s, opacity 0.2s;
-    letter-spacing: 0.02em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 24px rgba(201, 255, 226, 0.25);
   }
 
-  .cta-box a:hover { transform: translateY(-1px); }
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(201, 255, 226, 0.35);
+  }
 
-  /* FOOTER */
-  footer {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 32px 32px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(26, 14, 7, 0.06);
+  .cta-button svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+  }
+
+  .cta-button:hover svg { transform: translateX(3px); }
+
+  .cta-spots {
+    margin-top: 20px;
     font-size: 13px;
-    color: var(--text-muted);
+    color: rgba(255, 243, 228, 0.45);
+    font-weight: 500;
   }
 
-  footer a { color: var(--text-muted); text-decoration: none; }
-  footer a:hover { color: var(--dark); }
+  /* BRANDED FOOTER */
+  .branded-footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--px) 48px;
+  }
+
+  .branded-footer-inner {
+    background: var(--dark);
+    border-radius: var(--radius);
+    padding: 32px 36px 36px;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .footer-top img {
+    height: 19px;
+    width: auto;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .footer-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 243, 228, 0.06);
+    transition: all 0.2s;
+  }
+
+  .footer-socials a:hover { background: rgba(255, 243, 228, 0.12); transform: translateY(-1px); }
+
+  .footer-socials a img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .footer-meta {
+    border-top: 1px solid rgba(255, 243, 228, 0.08);
+    padding-top: 20px;
+  }
+
+  .footer-meta p {
+    font-size: 12px;
+    color: var(--cream);
+    opacity: 0.5;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer-meta p + p { margin-top: 4px; }
+
+  .footer-meta a {
+    color: var(--cream);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .footer-meta a:hover { opacity: 0.8; }
+
+  /* MOBILE STICKY CTA */
+  .mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(26, 14, 7, 0.06);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-cta.visible { transform: translateY(0); }
+
+  .mobile-cta a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--dark);
+    color: var(--white);
+    padding: 15px 24px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .mobile-cta a svg { width: 18px; height: 18px; flex-shrink: 0; }
 
   /* ANIMATIONS */
   .fade-in {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .fade-in.visible {
@@ -585,41 +863,107 @@
     transform: translateY(0);
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 700px) {
-    .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
-    .services { grid-template-columns: 1fr; }
-    .deliverable-grid { grid-template-columns: 1fr; }
-    .comparison-grid { grid-template-columns: 1fr; }
-    nav .nav-links { display: none; }
+  .stagger-1 { transition-delay: 0.05s; }
+  .stagger-2 { transition-delay: 0.1s; }
+  .stagger-3 { transition-delay: 0.15s; }
+  .stagger-4 { transition-delay: 0.2s; }
+  .stagger-5 { transition-delay: 0.25s; }
+  .stagger-6 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE — TABLET */
+  @media (max-width: 860px) {
+    :root { --px: 24px; }
+    .services { gap: 12px; }
+    .comparison-grid { gap: 12px; }
+    .cta-box { padding: 56px 40px; }
+    .timeline-content { padding: 36px; }
+    .platform-detail { padding: 36px; }
+  }
+
+  /* RESPONSIVE — MOBILE */
+  @media (max-width: 680px) {
+    :root { --px: 20px; }
+
+    nav { padding: 12px 16px; }
+    nav .nav-links .text-link { display: none; }
+    nav .logo-mark span { font-size: 14px; }
+
     .hero { padding: 110px 20px 60px; }
-    .stats-bar, .section-header, .services, .timeline-section,
-    .platforms-section, .comparison, .cta-section { padding-left: 20px; padding-right: 20px; }
-    .cta-box { padding: 40px 24px; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 16px; margin-top: 16px; }
+    .hero-cta { margin-top: 32px; padding: 14px 28px; font-size: 14px; }
+
+    .stats-bar-inner {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 32px 24px;
+      gap: 24px;
+    }
+    .stat-number { font-size: 36px; }
+
+    .services { grid-template-columns: 1fr; }
+
+    .deliverable-grid { grid-template-columns: 1fr; }
+
+    .timeline-content { padding: 28px 24px; }
+
+    .comparison-grid { grid-template-columns: 1fr; }
+    .compare-col { padding: 32px 24px; }
+
+    .cta-box { padding: 48px 24px; }
+    .cta-button { padding: 15px 32px; font-size: 15px; }
+
+    .branded-footer-inner { padding: 28px 24px 32px; }
+    .footer-top { flex-direction: column; gap: 16px; align-items: flex-start; }
+
+    .platform-toggle { gap: 8px; }
+    .platform-btn { padding: 9px 18px; font-size: 13px; }
+
+    .mobile-cta { display: block; }
+
+    .cta-section { padding-bottom: 16px; }
+    .branded-footer { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+
+    .section-header { padding-bottom: 32px; }
+    .stats-bar, .services, .timeline-section,
+    .platforms-section, .comparison { margin-bottom: 72px; }
+  }
+
+  /* RESPONSIVE — SMALL MOBILE */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 28px; }
+    .stat-number { font-size: 30px; }
+    .cta-box h2 { font-size: 24px; }
+    .hero-badge { font-size: 12px; padding: 6px 14px; }
   }
 </style>
 </head>
 <body>
 
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- NAV -->
-<nav>
-  <div class="logo">HaitiBrand</div>
+<nav id="mainNav">
+  <a href="https://haitibrand.co" class="logo-mark" target="_blank" rel="noopener">
+    <img src="https://raw.githubusercontent.com/haitibrand-co/branding/main/HB-favicon-digital.png" alt="HaitiBrand" width="32" height="32">
+    <span>HaitiBrand</span>
+  </a>
   <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#timeline">30 jours</a>
-    <a href="#platforms">Plateformes</a>
-    <a href="#cta" class="nav-cta">Démarrer</a>
+    <a href="#services" class="text-link">Services</a>
+    <a href="#timeline" class="text-link">30 jours</a>
+    <a href="#platforms" class="text-link">Plateformes</a>
+    <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="nav-cta">Réserver un appel</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero fade-in">
-  <div class="hero-badge">Cohorte 2026 — 8 places</div>
-  <h1>Votre équipe créative et média, en abonnement</h1>
-  <p>Pour un seul forfait mensuel, votre marque dispose d'une équipe complète en création et en média payant. Pas de contrat par projet, pas de discussions sur la portée, une campagne chaque semaine.</p>
-  <a href="https://haitibrand.co/contact#calendar" class="hero-cta">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l-4 4l6 6l4-16l-18 7l4 2l2 6l3-4"/></svg>
-    Démarrer aujourd'hui
+  <div class="hero-badge"><span class="pulse"></span> Cohorte 2026 — places limitées</div>
+  <h1>Votre équipe créative et média, <span class="highlight">en abonnement</span></h1>
+  <p>Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet, pas de discussions sur la portée.</p>
+  <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="hero-cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Réservez 15 minutes avec nous
   </a>
 </section>
 
@@ -647,12 +991,12 @@
 
 <!-- SERVICES -->
 <div class="section-header fade-in" id="services">
-  <h2>Tout est inclus</h2>
-  <p>Cliquez pour voir le détail de chaque service.</p>
+  <h2>Tout est inclus dans le forfait</h2>
+  <p>Cliquez sur un service pour voir le détail.</p>
 </div>
 
-<div class="services fade-in">
-  <div class="service-card" onclick="toggleCard(this)">
+<div class="services">
+  <div class="service-card fade-in stagger-1" onclick="toggleCard(this)">
     <div class="card-icon">🎨</div>
     <h3>Design illimité</h3>
     <div class="card-summary">Demandes illimitées, livrées en 24 à 48 heures.</div>
@@ -668,7 +1012,7 @@
     <div class="expand-hint">↓ Voir le détail</div>
   </div>
 
-  <div class="service-card" onclick="toggleCard(this)">
+  <div class="service-card fade-in stagger-2" onclick="toggleCard(this)">
     <div class="card-icon">📢</div>
     <h3>Campagnes créatives</h3>
     <div class="card-summary">Concepts de campagne livrés chaque semaine.</div>
@@ -683,7 +1027,7 @@
     <div class="expand-hint">↓ Voir le détail</div>
   </div>
 
-  <div class="service-card" onclick="toggleCard(this)">
+  <div class="service-card fade-in stagger-3" onclick="toggleCard(this)">
     <div class="card-icon">📊</div>
     <h3>Média payant</h3>
     <div class="card-summary">Publicités produites et gérées sur Meta, TikTok et X.</div>
@@ -698,7 +1042,7 @@
     <div class="expand-hint">↓ Voir le détail</div>
   </div>
 
-  <div class="service-card" onclick="toggleCard(this)">
+  <div class="service-card fade-in stagger-4" onclick="toggleCard(this)">
     <div class="card-icon">🎬</div>
     <h3>Contenu UGC</h3>
     <div class="card-summary">Du contenu créé par de vrais créateurs haïtiens.</div>
@@ -713,7 +1057,7 @@
     <div class="expand-hint">↓ Voir le détail</div>
   </div>
 
-  <div class="service-card" onclick="toggleCard(this)">
+  <div class="service-card fade-in stagger-5" onclick="toggleCard(this)">
     <div class="card-icon">📈</div>
     <h3>Rapports mensuels</h3>
     <div class="card-summary">Chaque dollar relié à votre chiffre d'affaires.</div>
@@ -728,7 +1072,7 @@
     <div class="expand-hint">↓ Voir le détail</div>
   </div>
 
-  <div class="service-card" onclick="toggleCard(this)">
+  <div class="service-card fade-in stagger-6" onclick="toggleCard(this)">
     <div class="card-icon">⚡</div>
     <h3>Livraison rapide</h3>
     <div class="card-summary">Pas de file d'attente. Votre équipe dédiée.</div>
@@ -751,11 +1095,11 @@
 </div>
 
 <div class="timeline-section fade-in">
-  <div class="timeline-tabs">
-    <button class="timeline-tab active" onclick="showWeek(0, this)">Semaine 1</button>
-    <button class="timeline-tab" onclick="showWeek(1, this)">Semaine 2</button>
-    <button class="timeline-tab" onclick="showWeek(2, this)">Semaine 3</button>
-    <button class="timeline-tab" onclick="showWeek(3, this)">Semaine 4</button>
+  <div class="timeline-tabs" role="tablist">
+    <button class="timeline-tab active" onclick="showWeek(0, this)" role="tab" aria-selected="true">Semaine 1</button>
+    <button class="timeline-tab" onclick="showWeek(1, this)" role="tab" aria-selected="false">Semaine 2</button>
+    <button class="timeline-tab" onclick="showWeek(2, this)" role="tab" aria-selected="false">Semaine 3</button>
+    <button class="timeline-tab" onclick="showWeek(3, this)" role="tab" aria-selected="false">Semaine 4</button>
   </div>
 
   <div class="timeline-content">
@@ -764,7 +1108,7 @@
       <div class="week-desc">Audit de votre présence actuelle, alignement stratégique, premiers designs livrés.</div>
       <div class="deliverable-grid">
         <div class="deliverable-item"><div class="d-icon">🔍</div>Audit digital complet</div>
-        <div class="deliverable-item"><div class="d-icon">🎯</div>Stratégie de campagne Q3</div>
+        <div class="deliverable-item"><div class="d-icon">🎯</div>Stratégie de campagne</div>
         <div class="deliverable-item"><div class="d-icon">🎨</div>15 visuels réseaux sociaux</div>
         <div class="deliverable-item"><div class="d-icon">📋</div>Calendrier éditorial mois 1</div>
       </div>
@@ -807,8 +1151,8 @@
 
 <!-- PLATFORMS -->
 <div class="section-header fade-in" id="platforms">
-  <h2>Vos campagnes, partout</h2>
-  <p>Sélectionnez une plateforme pour voir ce que nous y faisons.</p>
+  <h2>Vos campagnes, sur chaque plateforme</h2>
+  <p>Sélectionnez une plateforme pour voir les formats que nous y produisons.</p>
 </div>
 
 <div class="platforms-section fade-in">
@@ -877,23 +1221,23 @@
     <div class="compare-col without">
       <h3>Agence traditionnelle</h3>
       <ul>
-        <li>Devis pour chaque projet</li>
-        <li>Délai de 2 à 4 semaines par campagne</li>
-        <li>Révisions facturées en supplément</li>
-        <li>Pas de visibilité sur les résultats</li>
-        <li>Contrat annuel rigide</li>
-        <li>Équipe partagée entre 20+ clients</li>
+        <li><span class="check-icon">✕</span>Devis pour chaque projet</li>
+        <li><span class="check-icon">✕</span>Délai de 2 à 4 semaines par campagne</li>
+        <li><span class="check-icon">✕</span>Révisions facturées en supplément</li>
+        <li><span class="check-icon">✕</span>Pas de visibilité sur les résultats</li>
+        <li><span class="check-icon">✕</span>Contrat annuel rigide</li>
+        <li><span class="check-icon">✕</span>Équipe partagée entre 20+ clients</li>
       </ul>
     </div>
     <div class="compare-col with">
       <h3>HaitiBrand Illimité</h3>
       <ul>
-        <li>Un forfait, demandes illimitées</li>
-        <li>Livraison en 24 à 48 heures</li>
-        <li>Révisions illimitées incluses</li>
-        <li>Rapport mensuel relié au chiffre d'affaires</li>
-        <li>Flexibilité mensuelle, sans engagement long</li>
-        <li>Équipe dédiée, cohorte limitée à 8 marques</li>
+        <li><span class="check-icon">✓</span>Un forfait, demandes illimitées</li>
+        <li><span class="check-icon">✓</span>Livraison en 24 à 48 heures</li>
+        <li><span class="check-icon">✓</span>Révisions illimitées incluses</li>
+        <li><span class="check-icon">✓</span>Rapport mensuel relié au chiffre d'affaires</li>
+        <li><span class="check-icon">✓</span>Flexibilité mensuelle, sans engagement long</li>
+        <li><span class="check-icon">✓</span>Équipe dédiée, cohorte limitée à 8 marques</li>
       </ul>
     </div>
   </div>
@@ -902,19 +1246,56 @@
 <!-- CTA -->
 <div class="cta-section fade-in" id="cta">
   <div class="cta-box">
-    <h2>La cohorte 2026 ferme à 8 marques</h2>
-    <p>Tout ce que vous venez de voir, livré chaque mois pour votre marque. Un appel de 15 minutes pour confirmer que le forfait illimité vous correspond.</p>
-    <a href="https://cal.com/haitibrand" target="_blank" rel="noopener">
-      Réservez 15 minutes avec nous →
+    <div class="cta-eyebrow">Cohorte 2026</div>
+    <h2>Tout ce que vous venez de voir, livré chaque mois</h2>
+    <p>Un appel de 15 minutes pour confirmer que le forfait illimité correspond à votre marque et vos objectifs.</p>
+    <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="cta-button">
+      Réservez 15 minutes avec nous
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
+    <div class="cta-spots">La cohorte ferme à 8 marques</div>
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <span>HaitiBrand © 2018–2026</span>
-  <span>Delmas 60, Port-au-Prince</span>
-</footer>
+<!-- BRANDED FOOTER -->
+<div class="branded-footer">
+  <div class="branded-footer-inner">
+    <div class="footer-top">
+      <img src="https://raw.githubusercontent.com/haitibrand-co/hbr-email-assets/main/hb_wordmark_white.svg" alt="HaitiBrand" height="19">
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/haitibrand.co/" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="https://img.icons8.com/ios-glyphs/60/ffffff/instagram-new.png" alt="Instagram" width="16" height="16">
+        </a>
+        <a href="https://www.youtube.com/@HaitiBrand" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="https://img.icons8.com/ios-glyphs/60/ffffff/youtube-play.png" alt="YouTube" width="16" height="16">
+        </a>
+        <a href="https://www.facebook.com/haitibrand" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="https://img.icons8.com/ios-glyphs/60/ffffff/facebook-new.png" alt="Facebook" width="16" height="16">
+        </a>
+        <a href="https://www.linkedin.com/company/haitibrand" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="https://img.icons8.com/ios-glyphs/60/ffffff/linkedin.png" alt="LinkedIn" width="16" height="16">
+        </a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <p>Delmas 60, Port-au-Prince</p>
+      <p>
+        <a href="https://haitibrand.co/privacy">Confidentialité</a> ·
+        <a href="https://haitibrand.co/terms">Conditions</a> ·
+        <a href="https://haitibrand.co">haitibrand.co</a>
+      </p>
+      <p>HaitiBrand © 2018–2026</p>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="https://cal.com/haitibrand" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Réservez 15 minutes
+  </a>
+</div>
 
 <script>
   // CARD TOGGLE
@@ -926,59 +1307,88 @@
 
   // TIMELINE TABS
   function showWeek(index, btn) {
-    document.querySelectorAll('.timeline-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.timeline-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.timeline-panel')[index].classList.add('active');
+    document.querySelectorAll('.timeline-tab').forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+      t.setAttribute('aria-selected', i === index);
+    });
+    document.querySelectorAll('.timeline-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === index);
+    });
   }
 
   // PLATFORM TABS
   function showPlatform(index, btn) {
-    document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.platform-detail').forEach(d => d.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.platform-detail')[index].classList.add('active');
+    document.querySelectorAll('.platform-btn').forEach((b, i) => b.classList.toggle('active', i === index));
+    document.querySelectorAll('.platform-detail').forEach((d, i) => d.classList.toggle('active', i === index));
   }
 
   // ANIMATED COUNTERS
+  let countersAnimated = false;
   function animateCounters() {
+    if (countersAnimated) return;
+    countersAnimated = true;
     document.querySelectorAll('.stat-number').forEach(el => {
       const target = parseInt(el.dataset.target);
       const suffix = target >= 100 ? '+' : '';
       let current = 0;
-      const step = Math.max(1, Math.floor(target / 40));
-      const interval = setInterval(() => {
+      const duration = 1200;
+      const steps = 50;
+      const step = target / steps;
+      const interval = duration / steps;
+      const timer = setInterval(() => {
         current += step;
         if (current >= target) {
           current = target;
-          clearInterval(interval);
+          clearInterval(timer);
         }
-        el.textContent = current + suffix;
-      }, 30);
+        el.textContent = Math.round(current) + suffix;
+      }, interval);
     });
   }
 
-  // SCROLL FADE-IN
+  // SCROLL OBSERVER
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        if (entry.target.querySelector('.stat-number')) {
-          animateCounters();
-        }
+        if (entry.target.querySelector('.stat-number')) animateCounters();
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // SCROLL PROGRESS BAR
+  const progressBar = document.getElementById('scrollProgress');
+  const navEl = document.getElementById('mainNav');
+  const mobileCta = document.getElementById('mobileCta');
+  let heroBottom = 0;
+
+  function updateScroll() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = Math.min(scrollTop / docHeight * 100, 100);
+    progressBar.style.width = progress + '%';
+
+    navEl.classList.toggle('scrolled', scrollTop > 20);
+
+    if (heroBottom === 0) {
+      const hero = document.querySelector('.hero');
+      if (hero) heroBottom = hero.offsetTop + hero.offsetHeight;
+    }
+    mobileCta.classList.toggle('visible', scrollTop > heroBottom);
+  }
+
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  updateScroll();
 
   // KEYBOARD NAV FOR TIMELINE
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
       const tabs = document.querySelectorAll('.timeline-tab');
-      const active = document.querySelector('.timeline-tab.active');
-      const idx = Array.from(tabs).indexOf(active);
-      let next = e.key === 'ArrowRight' ? idx + 1 : idx - 1;
+      const activeTab = document.querySelector('.timeline-tab.active');
+      const idx = Array.from(tabs).indexOf(activeTab);
+      const next = e.key === 'ArrowRight' ? idx + 1 : idx - 1;
       if (next >= 0 && next < tabs.length) {
         showWeek(next, tabs[next]);
         tabs[next].focus();
