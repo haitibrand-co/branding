@@ -648,6 +648,174 @@
     color: var(--dark);
   }
 
+  /* PRICING SECTION */
+  .pricing-section {
+    max-width: var(--max-w);
+    margin: 0 auto 96px;
+    padding: 0 var(--px);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+
+  .pricing-card {
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(35, 41, 50, 0.08);
+  }
+
+  .pricing-card.starter {
+    background: var(--white);
+    border: 1.5px solid rgba(35, 41, 50, 0.08);
+  }
+
+  .pricing-card.croissance {
+    background: var(--gold-light);
+    border: 1.5px solid var(--gold-muted);
+  }
+
+  .pricing-card.illimite {
+    background: var(--dark);
+    color: var(--white);
+  }
+
+  .pricing-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+
+  .starter .pricing-badge {
+    background: var(--gray-light);
+    color: var(--text-muted);
+  }
+
+  .croissance .pricing-badge {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--gold-dim);
+  }
+
+  .illimite .pricing-badge {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--gold);
+  }
+
+  .pricing-card .price {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
+  }
+
+  .pricing-card .price-period {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .starter .price-period,
+  .croissance .price-period { color: var(--text-muted); }
+  .illimite .price-period { color: rgba(255, 255, 255, 0.5); }
+
+  .pricing-card .pricing-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(35, 41, 50, 0.08);
+  }
+
+  .illimite .pricing-desc {
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .starter .pricing-desc,
+  .croissance .pricing-desc { color: var(--text-muted); }
+
+  .pricing-card ul { list-style: none; }
+
+  .pricing-card li {
+    font-size: 14px;
+    padding: 8px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .pricing-card li i {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .starter li i,
+  .croissance li i { color: var(--dark); }
+  .illimite li i { color: var(--gold); }
+
+  .pricing-card .pricing-cta {
+    display: block;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 28px;
+    transition: all 0.25s;
+    letter-spacing: 0.01em;
+  }
+
+  .starter .pricing-cta {
+    background: var(--gray-light);
+    color: var(--dark);
+  }
+
+  .starter .pricing-cta:hover { background: #e4e6e9; }
+
+  .croissance .pricing-cta {
+    background: var(--dark);
+    color: var(--white);
+  }
+
+  .croissance .pricing-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .illimite .pricing-cta {
+    background: var(--gold);
+    color: var(--dark);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  }
+
+  .illimite .pricing-cta:hover {
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .pricing-onboarding {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
   /* CTA SECTION */
   .cta-section {
     max-width: var(--max-w);
@@ -921,6 +1089,10 @@
     .comparison-grid { grid-template-columns: 1fr; }
     .compare-col { padding: 32px 24px; }
 
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 32px 24px; }
+    .pricing-card .price { font-size: 40px; }
+
     .cta-box { padding: 48px 24px; }
     .cta-button { padding: 15px 32px; font-size: 15px; }
 
@@ -963,6 +1135,7 @@
     <a href="#services" class="text-link">Services</a>
     <a href="#timeline" class="text-link">30 jours</a>
     <a href="#platforms" class="text-link">Plateformes</a>
+    <a href="#pricing" class="text-link">Tarifs</a>
     <a href="https://haitibrand.co" target="_blank" rel="noopener" class="nav-cta">Visiter notre site</a>
   </div>
 </nav>
@@ -1252,6 +1425,66 @@
       </ul>
     </div>
   </div>
+</div>
+
+<!-- PRICING -->
+<div class="section-header fade-in" id="pricing">
+  <h2>Un forfait pour chaque étape de croissance</h2>
+  <p>Commencez là où vous êtes. Évoluez quand vous êtes prêt.</p>
+</div>
+
+<div class="pricing-section fade-in">
+  <div class="pricing-grid">
+
+    <div class="pricing-card starter">
+      <div class="pricing-badge">Starter</div>
+      <div class="price">$500</div>
+      <div class="price-period">par mois</div>
+      <div class="pricing-desc">Présence sociale professionnelle, gérée de A à Z. Idéal pour les marques qui veulent poster régulièrement sans gérer la production.</div>
+      <ul>
+        <li><i class="ph ph-check"></i>12 posts réseaux sociaux par mois (3/semaine)</li>
+        <li><i class="ph ph-check"></i>1 concept de campagne créative</li>
+        <li><i class="ph ph-check"></i>Calendrier de contenu mensuel</li>
+        <li><i class="ph ph-check"></i>Project manager dédié</li>
+        <li><i class="ph ph-check"></i>Révisions incluses</li>
+      </ul>
+      <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="pricing-cta">Commencer</a>
+    </div>
+
+    <div class="pricing-card croissance">
+      <div class="pricing-badge">Croissance</div>
+      <div class="price">$1,000</div>
+      <div class="price-period">par mois</div>
+      <div class="pricing-desc">Tout le Starter, plus des campagnes publicitaires et email marketing gérés par notre équipe.</div>
+      <ul>
+        <li><i class="ph ph-check"></i>Tout le forfait Starter inclus</li>
+        <li><i class="ph ph-check"></i>$100 budget Facebook Ads, géré par HB</li>
+        <li><i class="ph ph-check"></i>1 campagne email par mois via Resend</li>
+        <li><i class="ph ph-check"></i>Rapport de performance mensuel</li>
+        <li><i class="ph ph-check"></i>A/B testing sur les créatives publicitaires</li>
+      </ul>
+      <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="pricing-cta">Choisir Croissance</a>
+    </div>
+
+    <div class="pricing-card illimite">
+      <div class="pricing-badge">Illimité</div>
+      <div class="price">$2,500</div>
+      <div class="price-period">par mois</div>
+      <div class="pricing-desc">Votre département créatif complet, externalisé. Design illimité, ads multi-plateformes, email marketing, automatisation.</div>
+      <ul>
+        <li><i class="ph ph-check"></i>Demandes de design illimitées, 24-48h</li>
+        <li><i class="ph ph-check"></i>4 campagnes créatives par mois</li>
+        <li><i class="ph ph-check"></i>$200 budget ads inclus (Facebook + YouTube)</li>
+        <li><i class="ph ph-check"></i>8 campagnes email par mois via Resend</li>
+        <li><i class="ph ph-check"></i>Audience setup et segmentation</li>
+        <li><i class="ph ph-check"></i>Workflow ManyChat intégré</li>
+        <li><i class="ph ph-check"></i>Amplification sur page publicitaire partenaire</li>
+      </ul>
+      <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="pricing-cta">Réserver un appel</a>
+    </div>
+
+  </div>
+  <div class="pricing-onboarding"><i class="ph ph-info" style="margin-right:4px;"></i> Frais d'onboarding unique de $500 pour Croissance et Illimité</div>
 </div>
 
 <!-- CTA -->
