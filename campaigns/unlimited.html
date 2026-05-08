@@ -717,6 +717,25 @@
     color: var(--gold);
   }
 
+  .pricing-audience {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .starter .pricing-audience,
+  .croissance .pricing-audience { color: var(--text-muted); }
+
+  .price-prefix {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .illimite .price-prefix { color: rgba(255, 255, 255, 0.5); }
+
   .pricing-card .price {
     font-size: 48px;
     font-weight: 600;
@@ -1440,6 +1459,7 @@
 
     <div class="pricing-card starter">
       <div class="pricing-badge">Starter</div>
+      <div class="pricing-audience">Entrepreneurs et indépendants</div>
       <div class="price">$500</div>
       <div class="price-period">par mois</div>
       <div class="pricing-desc">Présence sociale professionnelle, gérée de A à Z. Idéal pour les marques qui veulent poster régulièrement sans gérer la production.</div>
@@ -1455,6 +1475,7 @@
 
     <div class="pricing-card croissance">
       <div class="pricing-badge">Croissance</div>
+      <div class="pricing-audience">Petites entreprises</div>
       <div class="price">$1,000</div>
       <div class="price-period">par mois</div>
       <div class="pricing-desc">Tout le Starter, plus des campagnes publicitaires et email marketing gérés par notre équipe.</div>
@@ -1470,7 +1491,7 @@
 
     <div class="pricing-card illimite">
       <div class="pricing-badge">Illimité</div>
-      <div class="price">$2,500</div>
+      <div class="price"><span class="price-prefix">À partir de</span> $2,500</div>
       <div class="price-period">par mois</div>
       <div class="pricing-desc">Votre département créatif complet, externalisé. Design illimité, ads multi-plateformes, email marketing, automatisation.</div>
       <ul>
