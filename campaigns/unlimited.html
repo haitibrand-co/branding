@@ -667,6 +667,8 @@
     padding: 40px 32px;
     position: relative;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
   }
 
   .pricing-card:hover {
@@ -749,7 +751,7 @@
   .starter .pricing-desc,
   .croissance .pricing-desc { color: var(--text-muted); }
 
-  .pricing-card ul { list-style: none; }
+  .pricing-card ul { list-style: none; flex: 1; }
 
   .pricing-card li {
     font-size: 14px;
