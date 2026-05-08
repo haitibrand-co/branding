@@ -88,6 +88,13 @@
       letter-spacing: 0.5px;
       color: var(--gold);
       text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-icon {
+      flex-shrink: 0;
     }
 
     .nav-links {
@@ -553,14 +560,29 @@
       margin-top: 40px;
     }
 
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .footer-wordmark {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+
+    .footer-wordmark .dot {
+      color: #00c854;
+    }
+
     footer p {
       font-size: 13px;
       color: var(--text-muted);
-    }
-
-    footer .footer-brand {
-      color: var(--gold);
-      font-weight: 600;
     }
 
     /* RESPONSIVE */
@@ -598,7 +620,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-brand">HB Digital</div>
+    <div class="nav-brand"><svg class="nav-icon" width="24" height="24" viewBox="0 0 218 218" fill-rule="evenodd"><path d="M53.7182 26.2099C93.7617 23.2969 123.188 23.231 162.384 26.205C175.775 27.221 186.421 37.8583 187.492 51.245C190.684 91.1697 190.925 120.651 187.662 160.475C186.543 174.126 175.411 184.773 161.731 185.46C122.517 187.43 93.3282 187.532 54.2953 185.561C40.1509 184.847 28.8745 173.481 28.2465 159.333C26.5458 121.008 26.6 91.873 28.3198 52.4472C28.9268 38.5301 39.8246 27.2205 53.7182 26.2099ZM73.436 66.1044V142.729H91.9565V111.937H122.151V142.729H140.633V66.1044H122.151V96.8593H91.9565V66.1044H73.436Z" fill="#fc334c"/></svg> HB Digital</div>
     <div class="nav-right">
       <div class="nav-links">
         <a href="#equipe">Équipe</a>
@@ -1040,7 +1062,11 @@
 
   <!-- FOOTER -->
   <footer>
-    <p><span class="footer-brand">HaitiBrand Digital</span> · Structure opérationnelle · Mai 2026</p>
+    <div class="footer-logo">
+      <svg width="32" height="32" viewBox="0 0 218 218" fill-rule="evenodd"><path d="M53.7182 26.2099C93.7617 23.2969 123.188 23.231 162.384 26.205C175.775 27.221 186.421 37.8583 187.492 51.245C190.684 91.1697 190.925 120.651 187.662 160.475C186.543 174.126 175.411 184.773 161.731 185.46C122.517 187.43 93.3282 187.532 54.2953 185.561C40.1509 184.847 28.8745 173.481 28.2465 159.333C26.5458 121.008 26.6 91.873 28.3198 52.4472C28.9268 38.5301 39.8246 27.2205 53.7182 26.2099ZM73.436 66.1044V142.729H91.9565V111.937H122.151V142.729H140.633V66.1044H122.151V96.8593H91.9565V66.1044H73.436Z" fill="var(--text)"/></svg>
+      <span class="footer-wordmark">HAITIBRAND<span class="dot">.</span></span>
+    </div>
+    <p>Structure opérationnelle · Mai 2026</p>
     <p style="margin-top: 8px; font-size: 12px;">Document interne. Ne pas distribuer en dehors de l'équipe.</p>
   </footer>
 
