@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HaitiBrand — Votre équipe créative et média, en abonnement</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --dark: #1A0E07;
+    --mint: #C9FFE2;
+    --cream: #FFF3E4;
+    --white: #FFFFFF;
+    --mint-dim: #a8e6c5;
+    --cream-dim: #f0dcc4;
+    --text: #1A0E07;
+    --text-muted: rgba(26, 14, 7, 0.6);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26, 14, 7, 0.06);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav .logo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--dark);
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  nav .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav .nav-links a:hover { color: var(--dark); }
+
+  .nav-cta {
+    background: var(--dark);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    padding: 140px 32px 80px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--mint);
+    color: var(--dark);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 700px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-top: 20px;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dark);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 36px;
+    transition: transform 0.2s, opacity 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-cta:hover { transform: translateY(-1px); opacity: 0.9; }
+
+  .hero-cta svg { width: 18px; height: 18px; }
+
+  /* STATS BAR */
+  .stats-bar {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+
+  .stats-bar-inner {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .stat-item {
+    text-align: center;
+    cursor: default;
+    transition: transform 0.2s;
+  }
+
+  .stat-item:hover { transform: translateY(-2px); }
+
+  .stat-number {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px 40px;
+  }
+
+  .section-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header p {
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  /* SERVICE CARDS */
+  .services {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid rgba(26, 14, 7, 0.08);
+    border-radius: var(--radius);
+    padding: 28px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card:hover {
+    border-color: rgba(26, 14, 7, 0.15);
+    box-shadow: 0 4px 24px rgba(26, 14, 7, 0.06);
+  }
+
+  .service-card.active {
+    background: var(--mint);
+    border-color: var(--mint-dim);
+  }
+
+  .service-card .card-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+    transition: background 0.25s;
+  }
+
+  .service-card.active .card-icon { background: rgba(26, 14, 7, 0.08); }
+
+  .service-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .service-card .card-summary {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .service-card .card-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, margin-top 0.35s ease, opacity 0.35s ease;
+    opacity: 0;
+    margin-top: 0;
+  }
+
+  .service-card.active .card-detail {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 16px;
+  }
+
+  .card-detail ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card-detail li {
+    font-size: 14px;
+    padding: 6px 0;
+    border-top: 1px solid rgba(26, 14, 7, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-detail li:before {
+    content: '✓';
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+
+  .service-card .expand-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .service-card.active .expand-hint { opacity: 0; }
+
+  /* TIMELINE */
+  .timeline-section {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+
+  .timeline-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .timeline-tab {
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(26, 14, 7, 0.12);
+    background: var(--white);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .timeline-tab:hover { border-color: var(--dark); color: var(--dark); }
+
+  .timeline-tab.active {
+    background: var(--dark);
+    color: var(--white);
+    border-color: var(--dark);
+  }
+
+  .timeline-content {
+    background: var(--mint);
+    border-radius: var(--radius);
+    padding: 40px;
+    min-height: 200px;
+  }
+
+  .timeline-panel { display: none; }
+  .timeline-panel.active { display: block; }
+
+  .timeline-panel h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .timeline-panel .week-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .deliverable-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .deliverable-item {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .deliverable-item .d-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* PLATFORMS */
+  .platforms-section {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+
+  .platform-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .platform-btn {
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--white);
+    border: 1px solid rgba(26, 14, 7, 0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .platform-btn:hover { border-color: var(--dark); }
+  .platform-btn.active { background: var(--cream); border-color: var(--cream-dim); }
+
+  .platform-detail {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 40px;
+    display: none;
+  }
+
+  .platform-detail.active { display: block; }
+
+  .platform-detail h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .platform-detail .plat-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; }
+
+  .format-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .format-chip {
+    background: rgba(26, 14, 7, 0.06);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* COMPARISON */
+  .comparison {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .compare-col {
+    border-radius: var(--radius);
+    padding: 36px 28px;
+  }
+
+  .compare-col.without {
+    background: #f5f5f5;
+    border: 1px solid rgba(26, 14, 7, 0.06);
+  }
+
+  .compare-col.with {
+    background: var(--mint);
+  }
+
+  .compare-col h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(26, 14, 7, 0.1);
+  }
+
+  .compare-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .compare-col li {
+    font-size: 14px;
+    padding: 8px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .compare-col.without li:before {
+    content: '✕';
+    color: rgba(26, 14, 7, 0.3);
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .compare-col.with li:before {
+    content: '✓';
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+
+  .cta-box {
+    background: var(--dark);
+    border-radius: var(--radius);
+    padding: 60px 48px;
+    text-align: center;
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .cta-box p {
+    font-size: 16px;
+    color: rgba(255, 243, 228, 0.7);
+    margin-bottom: 32px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-box a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--mint);
+    color: var(--dark);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-box a:hover { transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(26, 14, 7, 0.06);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--text-muted); text-decoration: none; }
+  footer a:hover { color: var(--dark); }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+    .services { grid-template-columns: 1fr; }
+    .deliverable-grid { grid-template-columns: 1fr; }
+    .comparison-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    .hero { padding: 110px 20px 60px; }
+    .stats-bar, .section-header, .services, .timeline-section,
+    .platforms-section, .comparison, .cta-section { padding-left: 20px; padding-right: 20px; }
+    .cta-box { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">HaitiBrand</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#timeline">30 jours</a>
+    <a href="#platforms">Plateformes</a>
+    <a href="#cta" class="nav-cta">Démarrer</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero fade-in">
+  <div class="hero-badge">Cohorte 2026 — 8 places</div>
+  <h1>Votre équipe créative et média, en abonnement</h1>
+  <p>Pour un seul forfait mensuel, votre marque dispose d'une équipe complète en création et en média payant. Pas de contrat par projet, pas de discussions sur la portée, une campagne chaque semaine.</p>
+  <a href="https://haitibrand.co/contact#calendar" class="hero-cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l-4 4l6 6l4-16l-18 7l4 2l2 6l3-4"/></svg>
+    Démarrer aujourd'hui
+  </a>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar fade-in">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <div class="stat-number" data-target="120">0</div>
+      <div class="stat-label">Designs livrés</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="18">0</div>
+      <div class="stat-label">Campagnes lancées</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="4">0</div>
+      <div class="stat-label">Plateformes activées</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="6">0</div>
+      <div class="stat-label">Créateurs UGC</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section-header fade-in" id="services">
+  <h2>Tout est inclus</h2>
+  <p>Cliquez pour voir le détail de chaque service.</p>
+</div>
+
+<div class="services fade-in">
+  <div class="service-card" onclick="toggleCard(this)">
+    <div class="card-icon">🎨</div>
+    <h3>Design illimité</h3>
+    <div class="card-summary">Demandes illimitées, livrées en 24 à 48 heures.</div>
+    <div class="card-detail">
+      <ul>
+        <li>Posts réseaux sociaux (carrousels, stories, reels covers)</li>
+        <li>Bannières web et email</li>
+        <li>Supports print (flyers, affiches, roll-ups)</li>
+        <li>Déclinaisons de marque et adaptations</li>
+        <li>Révisions illimitées jusqu'à validation</li>
+      </ul>
+    </div>
+    <div class="expand-hint">↓ Voir le détail</div>
+  </div>
+
+  <div class="service-card" onclick="toggleCard(this)">
+    <div class="card-icon">📢</div>
+    <h3>Campagnes créatives</h3>
+    <div class="card-summary">Concepts de campagne livrés chaque semaine.</div>
+    <div class="card-detail">
+      <ul>
+        <li>Concepts créatifs originaux avec direction artistique</li>
+        <li>Copywriting en français, créole et anglais</li>
+        <li>Storyboards pour vidéos et reels</li>
+        <li>Déclinaison sur tous les canaux (digital, print, OOH)</li>
+      </ul>
+    </div>
+    <div class="expand-hint">↓ Voir le détail</div>
+  </div>
+
+  <div class="service-card" onclick="toggleCard(this)">
+    <div class="card-icon">📊</div>
+    <h3>Média payant</h3>
+    <div class="card-summary">Publicités produites et gérées sur Meta, TikTok et X.</div>
+    <div class="card-detail">
+      <ul>
+        <li>Création des audiences et ciblage géographique Haïti</li>
+        <li>A/B testing des créatives</li>
+        <li>Optimisation quotidienne des budgets</li>
+        <li>Reporting hebdomadaire avec ROAS et coût par résultat</li>
+      </ul>
+    </div>
+    <div class="expand-hint">↓ Voir le détail</div>
+  </div>
+
+  <div class="service-card" onclick="toggleCard(this)">
+    <div class="card-icon">🎬</div>
+    <h3>Contenu UGC</h3>
+    <div class="card-summary">Du contenu créé par de vrais créateurs haïtiens.</div>
+    <div class="card-detail">
+      <ul>
+        <li>Casting et briefing des créateurs</li>
+        <li>Production de vidéos authentiques pour ads</li>
+        <li>Formats optimisés par plateforme (9:16, 1:1, 16:9)</li>
+        <li>Droits d'utilisation commerciale inclus</li>
+      </ul>
+    </div>
+    <div class="expand-hint">↓ Voir le détail</div>
+  </div>
+
+  <div class="service-card" onclick="toggleCard(this)">
+    <div class="card-icon">📈</div>
+    <h3>Rapports mensuels</h3>
+    <div class="card-summary">Chaque dollar relié à votre chiffre d'affaires.</div>
+    <div class="card-detail">
+      <ul>
+        <li>Dashboard interactif avec KPIs en temps réel</li>
+        <li>Attribution des conversions par canal</li>
+        <li>Recommandations stratégiques pour le mois suivant</li>
+        <li>Analyse concurrentielle mensuelle</li>
+      </ul>
+    </div>
+    <div class="expand-hint">↓ Voir le détail</div>
+  </div>
+
+  <div class="service-card" onclick="toggleCard(this)">
+    <div class="card-icon">⚡</div>
+    <h3>Livraison rapide</h3>
+    <div class="card-summary">Pas de file d'attente. Votre équipe dédiée.</div>
+    <div class="card-detail">
+      <ul>
+        <li>Délai standard : 24-48h par demande</li>
+        <li>Canal Slack ou WhatsApp dédié</li>
+        <li>Project manager assigné à votre compte</li>
+        <li>Nombre de demandes actives illimité</li>
+      </ul>
+    </div>
+    <div class="expand-hint">↓ Voir le détail</div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="section-header fade-in" id="timeline">
+  <h2>À quoi ressemblent 30 jours avec HaitiBrand</h2>
+  <p>Aperçu réel d'une marque inscrite au forfait illimité.</p>
+</div>
+
+<div class="timeline-section fade-in">
+  <div class="timeline-tabs">
+    <button class="timeline-tab active" onclick="showWeek(0, this)">Semaine 1</button>
+    <button class="timeline-tab" onclick="showWeek(1, this)">Semaine 2</button>
+    <button class="timeline-tab" onclick="showWeek(2, this)">Semaine 3</button>
+    <button class="timeline-tab" onclick="showWeek(3, this)">Semaine 4</button>
+  </div>
+
+  <div class="timeline-content">
+    <div class="timeline-panel active" data-week="0">
+      <h3>Onboarding et premier sprint</h3>
+      <div class="week-desc">Audit de votre présence actuelle, alignement stratégique, premiers designs livrés.</div>
+      <div class="deliverable-grid">
+        <div class="deliverable-item"><div class="d-icon">🔍</div>Audit digital complet</div>
+        <div class="deliverable-item"><div class="d-icon">🎯</div>Stratégie de campagne Q3</div>
+        <div class="deliverable-item"><div class="d-icon">🎨</div>15 visuels réseaux sociaux</div>
+        <div class="deliverable-item"><div class="d-icon">📋</div>Calendrier éditorial mois 1</div>
+      </div>
+    </div>
+
+    <div class="timeline-panel" data-week="1">
+      <h3>Première campagne en production</h3>
+      <div class="week-desc">Lancement des premières publicités, casting UGC, optimisation des audiences.</div>
+      <div class="deliverable-grid">
+        <div class="deliverable-item"><div class="d-icon">📢</div>Campagne Meta lancée</div>
+        <div class="deliverable-item"><div class="d-icon">🎬</div>2 vidéos UGC produites</div>
+        <div class="deliverable-item"><div class="d-icon">🎨</div>30+ visuels supplémentaires</div>
+        <div class="deliverable-item"><div class="d-icon">📊</div>Premiers résultats A/B</div>
+      </div>
+    </div>
+
+    <div class="timeline-panel" data-week="2">
+      <h3>Montée en puissance</h3>
+      <div class="week-desc">Deuxième plateforme activée, scaling des créatives performantes, nouvelles audiences.</div>
+      <div class="deliverable-grid">
+        <div class="deliverable-item"><div class="d-icon">📱</div>TikTok Ads activé</div>
+        <div class="deliverable-item"><div class="d-icon">🔄</div>Rotation des créatives</div>
+        <div class="deliverable-item"><div class="d-icon">🎬</div>4 vidéos UGC supplémentaires</div>
+        <div class="deliverable-item"><div class="d-icon">🎨</div>Déclinaisons campagne print</div>
+      </div>
+    </div>
+
+    <div class="timeline-panel" data-week="3">
+      <h3>Optimisation et rapport</h3>
+      <div class="week-desc">Analyse complète du premier mois, recommandations pour le mois suivant.</div>
+      <div class="deliverable-grid">
+        <div class="deliverable-item"><div class="d-icon">📈</div>Rapport de performance complet</div>
+        <div class="deliverable-item"><div class="d-icon">💡</div>Recommandations mois 2</div>
+        <div class="deliverable-item"><div class="d-icon">🎯</div>Nouvelles audiences identifiées</div>
+        <div class="deliverable-item"><div class="d-icon">🎨</div>120+ designs livrés au total</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLATFORMS -->
+<div class="section-header fade-in" id="platforms">
+  <h2>Vos campagnes, partout</h2>
+  <p>Sélectionnez une plateforme pour voir ce que nous y faisons.</p>
+</div>
+
+<div class="platforms-section fade-in">
+  <div class="platform-toggle">
+    <button class="platform-btn active" onclick="showPlatform(0, this)">Meta</button>
+    <button class="platform-btn" onclick="showPlatform(1, this)">TikTok</button>
+    <button class="platform-btn" onclick="showPlatform(2, this)">X (Twitter)</button>
+    <button class="platform-btn" onclick="showPlatform(3, this)">YouTube</button>
+  </div>
+
+  <div class="platform-detail active" data-platform="0">
+    <h3>Meta (Facebook + Instagram)</h3>
+    <div class="plat-desc">La base de toute stratégie digitale en Haïti. Couverture maximale, ciblage précis.</div>
+    <div class="format-chips">
+      <span class="format-chip">Feed statique</span>
+      <span class="format-chip">Carrousel</span>
+      <span class="format-chip">Reels / Stories</span>
+      <span class="format-chip">Lead Ads</span>
+      <span class="format-chip">Retargeting</span>
+      <span class="format-chip">Lookalike audiences</span>
+    </div>
+  </div>
+
+  <div class="platform-detail" data-platform="1">
+    <h3>TikTok</h3>
+    <div class="plat-desc">Toucher la génération 18-35 avec du contenu natif, authentique et performant.</div>
+    <div class="format-chips">
+      <span class="format-chip">In-Feed Ads</span>
+      <span class="format-chip">Spark Ads (UGC)</span>
+      <span class="format-chip">TopView</span>
+      <span class="format-chip">Hashtag Challenge</span>
+      <span class="format-chip">Créateurs locaux</span>
+    </div>
+  </div>
+
+  <div class="platform-detail" data-platform="2">
+    <h3>X (Twitter)</h3>
+    <div class="plat-desc">Conversations en temps réel, positionnement de marque, veille concurrentielle.</div>
+    <div class="format-chips">
+      <span class="format-chip">Promoted Tweets</span>
+      <span class="format-chip">Video Ads</span>
+      <span class="format-chip">Trend Takeover</span>
+      <span class="format-chip">Engagement organique</span>
+    </div>
+  </div>
+
+  <div class="platform-detail" data-platform="3">
+    <h3>YouTube</h3>
+    <div class="plat-desc">Vidéo long format, pré-roll, Shorts. Construire la notoriété avec du contenu durable.</div>
+    <div class="format-chips">
+      <span class="format-chip">Pre-roll (skippable)</span>
+      <span class="format-chip">Bumper 6s</span>
+      <span class="format-chip">YouTube Shorts</span>
+      <span class="format-chip">Discovery Ads</span>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div class="section-header fade-in">
+  <h2>Agence traditionnelle vs. HaitiBrand Illimité</h2>
+</div>
+
+<div class="comparison fade-in">
+  <div class="comparison-grid">
+    <div class="compare-col without">
+      <h3>Agence traditionnelle</h3>
+      <ul>
+        <li>Devis pour chaque projet</li>
+        <li>Délai de 2 à 4 semaines par campagne</li>
+        <li>Révisions facturées en supplément</li>
+        <li>Pas de visibilité sur les résultats</li>
+        <li>Contrat annuel rigide</li>
+        <li>Équipe partagée entre 20+ clients</li>
+      </ul>
+    </div>
+    <div class="compare-col with">
+      <h3>HaitiBrand Illimité</h3>
+      <ul>
+        <li>Un forfait, demandes illimitées</li>
+        <li>Livraison en 24 à 48 heures</li>
+        <li>Révisions illimitées incluses</li>
+        <li>Rapport mensuel relié au chiffre d'affaires</li>
+        <li>Flexibilité mensuelle, sans engagement long</li>
+        <li>Équipe dédiée, cohorte limitée à 8 marques</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section fade-in" id="cta">
+  <div class="cta-box">
+    <h2>La cohorte 2026 ferme à 8 marques</h2>
+    <p>Tout ce que vous venez de voir, livré chaque mois pour votre marque. Un appel de 15 minutes pour confirmer que le forfait illimité vous correspond.</p>
+    <a href="https://cal.com/haitibrand" target="_blank" rel="noopener">
+      Réservez 15 minutes avec nous →
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>HaitiBrand © 2018–2026</span>
+  <span>Delmas 60, Port-au-Prince</span>
+</footer>
+
+<script>
+  // CARD TOGGLE
+  function toggleCard(card) {
+    const wasActive = card.classList.contains('active');
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('active'));
+    if (!wasActive) card.classList.add('active');
+  }
+
+  // TIMELINE TABS
+  function showWeek(index, btn) {
+    document.querySelectorAll('.timeline-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.timeline-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.timeline-panel')[index].classList.add('active');
+  }
+
+  // PLATFORM TABS
+  function showPlatform(index, btn) {
+    document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.platform-detail').forEach(d => d.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.platform-detail')[index].classList.add('active');
+  }
+
+  // ANIMATED COUNTERS
+  function animateCounters() {
+    document.querySelectorAll('.stat-number').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const suffix = target >= 100 ? '+' : '';
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 40));
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        el.textContent = current + suffix;
+      }, 30);
+    });
+  }
+
+  // SCROLL FADE-IN
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.querySelector('.stat-number')) {
+          animateCounters();
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // KEYBOARD NAV FOR TIMELINE
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      const tabs = document.querySelectorAll('.timeline-tab');
+      const active = document.querySelector('.timeline-tab.active');
+      const idx = Array.from(tabs).indexOf(active);
+      let next = e.key === 'ArrowRight' ? idx + 1 : idx - 1;
+      if (next >= 0 && next < tabs.length) {
+        showWeek(next, tabs[next]);
+        tabs[next].focus();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
