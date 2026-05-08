@@ -6,6 +6,12 @@
   <title>HB Digital | Structure opérationnelle</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('hb-theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
   <style>
     :root {
       --gold: #d4af37;
@@ -24,6 +30,25 @@
       --orange: #fb923c;
       --rose: #fb7185;
       --cyan: #22d3ee;
+    }
+
+    [data-theme="light"] {
+      --dark-bg: #f5f6f8;
+      --card-bg: #ffffff;
+      --card-border: rgba(0,0,0,0.07);
+      --surface: #eef0f3;
+      --text: #1a1b1e;
+      --text-dim: #5c5e66;
+      --text-muted: #9a9ca5;
+      --gold: #b8941e;
+      --gold-dim: rgba(184, 148, 30, 0.10);
+      --gold-glow: rgba(184, 148, 30, 0.06);
+      --green: #0d9668;
+      --blue: #2b7de9;
+      --purple: #7c5cbf;
+      --orange: #d97706;
+      --rose: #e11d48;
+      --cyan: #0891b2;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,6 +76,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(245, 246, 248, 0.85);
     }
 
     .nav-brand {
@@ -204,6 +233,10 @@
 
     .team-card:hover {
       border-color: rgba(255,255,255,0.12);
+    }
+
+    [data-theme="light"] .team-card:hover {
+      border-color: rgba(0,0,0,0.15);
     }
 
     .team-card.full-width {
@@ -480,6 +513,38 @@
       line-height: 1.6;
     }
 
+    /* THEME TOGGLE */
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .theme-toggle .icon-light { display: none; }
+    [data-theme="light"] .theme-toggle .icon-dark { display: none; }
+    [data-theme="light"] .theme-toggle .icon-light { display: block; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     /* FOOTER */
     footer {
       text-align: center;
@@ -534,11 +599,17 @@
   <!-- NAV -->
   <nav>
     <div class="nav-brand">HB Digital</div>
-    <div class="nav-links">
-      <a href="#equipe">Équipe</a>
-      <a href="#pipeline">Pipeline</a>
-      <a href="#cadence">Cadence</a>
-      <a href="#automation">Automation</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#equipe">Équipe</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#cadence">Cadence</a>
+        <a href="#automation">Automation</a>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème">
+        <i class="ph ph-moon icon-dark"></i>
+        <i class="ph ph-sun icon-light"></i>
+      </button>
     </div>
   </nav>
 
@@ -973,5 +1044,13 @@
     <p style="margin-top: 8px; font-size: 12px;">Document interne. Ne pas distribuer en dehors de l'équipe.</p>
   </footer>
 
+  <script>
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('hb-theme', next);
+    }
+  </script>
 </body>
 </html>
