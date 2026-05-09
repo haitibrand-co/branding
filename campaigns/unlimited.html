@@ -236,9 +236,28 @@
   }
 
   .hero h1 .highlight {
-    color: inherit;
-    background: none;
-    -webkit-text-fill-color: currentColor;
+    background: linear-gradient(
+      to right,
+      #d4af37 0%,
+      #232932 25%,
+      #d4af37 50%,
+      #232932 75%,
+      #d4af37 100%
+    );
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shine 6s linear infinite;
+  }
+  @keyframes gradient-shine {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .highlight { animation: none; background-position: 50% 50%; }
   }
 
   .hero p {
