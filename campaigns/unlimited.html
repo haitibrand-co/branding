@@ -221,18 +221,25 @@
   }
 
   .hero h1 {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.025em;
+    font-size: clamp(32px, 4.6vw, 54px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     max-width: 760px;
     margin-left: auto;
     margin-right: auto;
   }
-  /* Lock the flipping highlight to its own row — width never affects line 1 */
+  /* Static first line — regular weight, sits on one line */
+  .hero h1 .hero-line-1 {
+    display: block;
+    font-weight: 400;
+  }
+  /* Flipping highlight — bold, dedicated line */
   .hero h1 .highlight {
-    display: inline-block;
+    display: block;
+    font-weight: 700;
     white-space: nowrap;
+    margin-top: 4px;
   }
 
   .hero h1 .highlight {
@@ -1166,7 +1173,7 @@
     nav .logo-mark span { font-size: 14px; }
 
     .hero { padding: 110px 20px 60px; }
-    .hero h1 { font-size: 30px; line-height: 1.12; }
+    .hero h1 { font-size: 26px; line-height: 1.2; }
     .hero p { font-size: 16px; margin-top: 16px; }
     .hero-cta { margin-top: 32px; padding: 14px 28px; font-size: 14px; }
 
@@ -1211,7 +1218,7 @@
 
   /* RESPONSIVE — SMALL MOBILE */
   @media (max-width: 380px) {
-    .hero h1 { font-size: 26px; line-height: 1.15; }
+    .hero h1 { font-size: 22px; line-height: 1.2; }
     .stat-number { font-size: 30px; }
     .cta-box h2 { font-size: 24px; }
     .hero-badge { font-size: 12px; padding: 6px 14px; }
@@ -1374,7 +1381,7 @@
     <span>Cohorte 2026</span>
   </div>
   <h1>
-    Votre équipe créative et média,<br>
+    <span class="hero-line-1">Votre équipe créative et média,</span>
     <span class="highlight" id="flipText" data-words="en abonnement|en illimité|sans engagement">en abonnement</span>
   </h1>
   <p>Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet.</p>
