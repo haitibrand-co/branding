@@ -1154,6 +1154,7 @@
   .secondary-cta {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: transparent;
     color: var(--dark);
@@ -1167,11 +1168,34 @@
     text-decoration: none;
     transition: all 0.25s;
     letter-spacing: 0.01em;
+    box-sizing: border-box;
   }
   .secondary-cta:hover { background: var(--dark); color: var(--white); }
   .secondary-cta i { font-size: 16px; }
   .cta-section .secondary-cta { color: var(--white); border-color: rgba(255, 255, 255, 0.4); }
   .cta-section .secondary-cta:hover { background: var(--white); color: var(--dark); border-color: var(--white); }
+
+  /* Stacked mobile layout — both buttons same width */
+  @media (max-width: 640px) {
+    .cta-row {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+      gap: 14px;
+    }
+    .cta-row .hero-cta,
+    .cta-row .cta-button,
+    .cta-row .secondary-cta {
+      width: 100%;
+      justify-content: center;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      font-size: 15px;
+    }
+  }
 
   /* MODAL */
   .modal-backdrop {
