@@ -221,17 +221,17 @@
   }
 
   .hero h1 {
-    font-size: clamp(34px, 4.6vw, 52px);
+    font-size: clamp(36px, 5vw, 56px);
     font-weight: 600;
-    line-height: 1.08;
+    line-height: 1.1;
     letter-spacing: -0.025em;
-    max-width: 720px;
+    max-width: 760px;
     margin-left: auto;
     margin-right: auto;
-    text-wrap: balance;
   }
-  /* Reserve space so the flip word doesn't push to a third line */
+  /* Lock the flipping highlight to its own row — width never affects line 1 */
   .hero h1 .highlight {
+    display: inline-block;
     white-space: nowrap;
   }
 
@@ -1373,7 +1373,10 @@
     <span class="pulse-green"></span>
     <span>Cohorte 2026</span>
   </div>
-  <h1>Votre équipe créative et média, <span class="highlight" id="flipText" data-words="en abonnement|en illimité|sans engagement">en abonnement</span></h1>
+  <h1>
+    Votre équipe créative et média,<br>
+    <span class="highlight" id="flipText" data-words="en abonnement|en illimité|sans engagement">en abonnement</span>
+  </h1>
   <p>Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet.</p>
   <div class="cta-row">
     <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="hero-cta">
