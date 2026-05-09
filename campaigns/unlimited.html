@@ -129,6 +129,7 @@
     max-width: var(--max-w);
     margin: 0 auto;
     position: relative;
+    text-align: center;
   }
 
   .hero-badge {
@@ -164,13 +165,14 @@
     line-height: 1.05;
     letter-spacing: -0.03em;
     max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero h1 .highlight {
-    background: linear-gradient(120deg, var(--gold) 0%, var(--gold-light) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: inherit;
+    background: none;
+    -webkit-text-fill-color: currentColor;
   }
 
   .hero p {
@@ -178,6 +180,8 @@
     color: var(--text-muted);
     max-width: 520px;
     margin-top: 22px;
+    margin-left: auto;
+    margin-right: auto;
     line-height: 1.7;
   }
 
