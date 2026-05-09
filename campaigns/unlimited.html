@@ -132,44 +132,38 @@
     text-align: center;
   }
 
-  .hero-chips {
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 28px;
-  }
-
-  .status-chip,
-  .info-chip {
+  .hero-chip-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 8px 16px;
+    gap: 10px;
+    background: var(--gray-light);
     border-radius: 50px;
-    letter-spacing: 0.01em;
+    padding: 4px 16px 4px 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 28px;
     line-height: 1;
   }
 
-  .status-chip {
-    background: rgba(46, 125, 50, 0.08);
-    color: #2e7d32;
-  }
-
-  .info-chip {
-    background: var(--gray-light);
+  .hero-chip-pill .inner-chip {
+    background: var(--white);
     color: var(--dark);
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   }
 
-  .status-chip .pulse {
-    width: 8px;
-    height: 8px;
+  .hero-chip-pill .pulse-green {
+    width: 7px;
+    height: 7px;
     background: #2e7d32;
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
   }
 
   /* Legacy badge — kept for backward compat with other badges if any */
@@ -229,11 +223,12 @@
   .hero-cta {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background: var(--dark);
     color: var(--white);
-    padding: 15px 34px;
-    border-radius: 50px;
+    padding: 15px 28px;
+    border-radius: 16px;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
@@ -241,6 +236,8 @@
     transition: all 0.25s;
     letter-spacing: 0.01em;
     box-shadow: 0 4px 20px rgba(35, 41, 50, 0.15);
+    min-width: 220px;
+    box-sizing: border-box;
   }
 
   .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(35, 41, 50, 0.2); }
@@ -838,15 +835,20 @@
 
   .pricing-card .pricing-cta {
     display: block;
+    width: 100%;
     text-align: center;
     padding: 14px 24px;
-    border-radius: 50px;
+    border: none;
+    border-radius: 16px;
     font-size: 14px;
     font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
     text-decoration: none;
     margin-top: 28px;
     transition: all 0.25s;
     letter-spacing: 0.01em;
+    box-sizing: border-box;
   }
 
   .starter .pricing-cta {
@@ -953,17 +955,20 @@
   .cta-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     background: var(--gold);
     color: var(--dark);
-    padding: 16px 40px;
-    border-radius: 50px;
+    padding: 16px 32px;
+    border-radius: 16px;
     font-size: 16px;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     letter-spacing: 0.01em;
     box-shadow: 0 4px 24px rgba(212, 175, 55, 0.3);
+    min-width: 240px;
+    box-sizing: border-box;
   }
 
   .cta-button:hover {
@@ -1203,10 +1208,10 @@
     gap: 8px;
     background: transparent;
     color: var(--dark);
-    padding: 14px 28px;
+    padding: 15px 28px;
     border: 1px solid var(--dark);
-    border-radius: 50px;
-    font-size: 14px;
+    border-radius: 16px;
+    font-size: 15px;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
@@ -1214,6 +1219,7 @@
     transition: all 0.25s;
     letter-spacing: 0.01em;
     box-sizing: border-box;
+    min-width: 220px;
   }
   .secondary-cta:hover { background: var(--dark); color: var(--white); }
   .secondary-cta i { font-size: 16px; }
@@ -1288,7 +1294,7 @@
   }
   .form-submit {
     width: 100%; padding: 16px 24px; background: var(--dark); color: var(--white);
-    border: none; border-radius: 50px; font-size: 15px; font-weight: 600;
+    border: none; border-radius: 16px; font-size: 15px; font-weight: 600;
     font-family: inherit; cursor: pointer; transition: all 0.25s; margin-top: 8px;
     letter-spacing: 0.01em;
   }
@@ -1336,9 +1342,10 @@
 
 <!-- HERO -->
 <section class="hero fade-in">
-  <div class="hero-chips">
-    <span class="status-chip"><span class="pulse"></span> Nous sommes disponibles</span>
-    <span class="info-chip">Places limitées</span>
+  <div class="hero-chip-pill">
+    <span class="inner-chip">Places limitées</span>
+    <span class="pulse-green"></span>
+    <span>Cohorte 2026</span>
   </div>
   <h1>Votre équipe créative et média, <span class="highlight">en abonnement</span></h1>
   <p>Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet, pas de discussions sur la portée.</p>
