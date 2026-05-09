@@ -1580,7 +1580,7 @@
         <li><i class="ph ph-check"></i>Project manager dédié</li>
         <li><i class="ph ph-check"></i>Révisions incluses</li>
       </ul>
-      <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="pricing-cta">Commencer</a>
+      <button type="button" class="pricing-cta" onclick="openCampaignForm('Starter')">Choisir ce forfait</button>
     </div>
 
     <div class="pricing-card croissance">
@@ -1596,7 +1596,7 @@
         <li><i class="ph ph-check"></i>Rapport de performance mensuel</li>
         <li><i class="ph ph-check"></i>A/B testing sur les créatives publicitaires</li>
       </ul>
-      <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="pricing-cta">Choisir Croissance</a>
+      <button type="button" class="pricing-cta" onclick="openCampaignForm('Croissance')">Choisir ce forfait</button>
     </div>
 
     <div class="pricing-card illimite">
@@ -1613,7 +1613,7 @@
         <li><i class="ph ph-check"></i>Workflow ManyChat intégré</li>
         <li><i class="ph ph-check"></i>Amplification sur page publicitaire partenaire</li>
       </ul>
-      <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="pricing-cta">Réserver un appel</a>
+      <button type="button" class="pricing-cta" onclick="openCampaignForm('Illimité')">Choisir ce forfait</button>
     </div>
 
   </div>
@@ -1710,6 +1710,10 @@
           <input id="cf_phone" name="phone" type="tel" required autocomplete="tel" placeholder="+509...">
         </div>
         <div class="form-field">
+          <label for="cf_industry">Secteur d'activité</label>
+          <input id="cf_industry" name="industry" type="text" required placeholder="ex. restauration, mode, services financiers...">
+        </div>
+        <div class="form-field">
           <label for="cf_package">Forfait qui vous intéresse</label>
           <select id="cf_package" name="package" required>
             <option value="Illimité">Illimité — à partir de $2,500/mois</option>
@@ -1732,11 +1736,17 @@
 </div>
 
 <script>
-  function openCampaignForm() {
+  function openCampaignForm(presetPackage) {
     var modal = document.getElementById('campaignModal');
     document.getElementById('campaignFormView').style.display = '';
     document.getElementById('campaignSuccessView').style.display = 'none';
     document.getElementById('campaignFormError').classList.remove('show');
+    if (presetPackage) {
+      var sel = document.getElementById('cf_package');
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === presetPackage) { sel.selectedIndex = i; break; }
+      }
+    }
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(function() { document.getElementById('cf_first').focus(); }, 100);
@@ -1760,6 +1770,7 @@
       business: document.getElementById('cf_business').value.trim(),
       email: document.getElementById('cf_email').value.trim(),
       phone: document.getElementById('cf_phone').value.trim(),
+      industry: document.getElementById('cf_industry').value.trim(),
       package: document.getElementById('cf_package').value,
     };
     try {
