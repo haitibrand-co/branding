@@ -133,23 +133,11 @@
     z-index: 1;
   }
 
-  /* Dot grid background — covers nav + hero area, fades to white */
-  .hero-dot-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 760px;
-    background-image: radial-gradient(circle, #d2d2d2 1.5px, transparent 1.5px);
-    background-size: 22px 22px;
-    background-position: 0 0;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  @media (max-width: 640px) {
-    .hero-dot-bg { height: 680px; background-size: 18px 18px; }
+  /* Flip-text in the hero headline */
+  .hero h1 .highlight {
+    display: inline-block;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    will-change: opacity, transform;
   }
 
   .hero-chip-pill {
@@ -1354,9 +1342,6 @@
   </div>
 </nav>
 
-<!-- DOT GRID BACKGROUND -->
-<div class="hero-dot-bg" aria-hidden="true"></div>
-
 <!-- HERO -->
 <section class="hero fade-in">
   <div class="hero-chip-pill">
@@ -1364,7 +1349,7 @@
     <span class="pulse-green"></span>
     <span>Cohorte 2026</span>
   </div>
-  <h1>Votre équipe créative et média, <span class="highlight">en abonnement</span></h1>
+  <h1>Votre équipe créative et média, <span class="highlight" id="flipText" data-words="en abonnement|en illimité|sans engagement">en abonnement</span></h1>
   <p>Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet.</p>
   <div class="cta-row">
     <a href="https://cal.com/haitibrand" target="_blank" rel="noopener" class="hero-cta">
@@ -1830,6 +1815,30 @@
 </div>
 
 <script>
+  // Hero headline flip — rotates the highlighted phrase every 3 seconds.
+  (function() {
+    var el = document.getElementById('flipText');
+    if (!el || !el.dataset.words) return;
+    var words = el.dataset.words.split('|');
+    if (words.length < 2) return;
+    var i = 0;
+    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+    setInterval(function() {
+      i = (i + 1) % words.length;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-10px)';
+      setTimeout(function() {
+        el.textContent = words[i];
+        el.style.transform = 'translateY(10px)';
+        requestAnimationFrame(function() {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      }, 350);
+    }, 2800);
+  })();
+
   function openCampaignForm(presetPackage) {
     var modal = document.getElementById('campaignModal');
     document.getElementById('campaignFormView').style.display = '';
