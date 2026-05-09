@@ -132,6 +132,47 @@
     text-align: center;
   }
 
+  .hero-chips {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .status-chip,
+  .info-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 50px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  .status-chip {
+    background: rgba(46, 125, 50, 0.08);
+    color: #2e7d32;
+  }
+
+  .info-chip {
+    background: var(--gray-light);
+    color: var(--dark);
+  }
+
+  .status-chip .pulse {
+    width: 8px;
+    height: 8px;
+    background: #2e7d32;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Legacy badge — kept for backward compat with other badges if any */
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -1295,7 +1336,10 @@
 
 <!-- HERO -->
 <section class="hero fade-in">
-  <div class="hero-badge"><span class="pulse"></span> Cohorte 2026 — places limitées</div>
+  <div class="hero-chips">
+    <span class="status-chip"><span class="pulse"></span> Nous sommes disponibles</span>
+    <span class="info-chip">Places limitées</span>
+  </div>
   <h1>Votre équipe créative et média, <span class="highlight">en abonnement</span></h1>
   <p>Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet, pas de discussions sur la portée.</p>
   <div class="cta-row">
