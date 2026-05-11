@@ -244,18 +244,18 @@
   }
 
   .hero h1 {
-    font-size: clamp(32px, 4.6vw, 54px);
+    font-size: clamp(18px, 4.4vw, 48px);
     font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.02em;
-    max-width: 760px;
     margin-left: auto;
     margin-right: auto;
   }
-  /* Static first line — medium weight, sits on one line */
+  /* Static first line, never wraps. Scales with the H1 clamp. */
   .hero h1 .hero-line-1 {
     display: block;
     font-weight: 500;
+    white-space: nowrap;
   }
   /* Flipping highlight — bold, dedicated line */
   .hero h1 .highlight {
@@ -1196,7 +1196,7 @@
     nav .logo-mark span { font-size: 14px; }
 
     .hero { padding: 110px 20px 60px; }
-    .hero h1 { font-size: 26px; line-height: 1.2; }
+    .hero h1 { line-height: 1.2; }
     .hero p { font-size: 16px; margin-top: 16px; }
     .hero-cta { margin-top: 32px; padding: 14px 28px; font-size: 14px; }
 
@@ -2074,7 +2074,7 @@
     "Cohorte 2026": "2026 cohort",
     "Votre équipe créative et média,": "Your creative and media team,",
     "en abonnement": "on subscription",
-    "Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet.": "One monthly subscription. Unlimited design, fresh campaigns every week, paid ads on Meta, TikTok and X. No per-project contracts.",
+    "Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet.": "One monthly fee. Unlimited design, weekly campaigns, paid ads on Meta, TikTok and X. No per-project contracts.",
     "Réservez 15 minutes avec nous": "Book 15 minutes with us",
     "Remplir le formulaire": "Fill out the form",
 
@@ -2161,15 +2161,15 @@
     // Platforms
     "Vos campagnes, sur chaque plateforme": "Your campaigns, on every platform",
     "Sélectionnez une plateforme pour voir les formats que nous y produisons.": "Pick a platform to see the formats we produce there.",
-    "La base de toute stratégie digitale en Haïti. Couverture maximale, ciblage précis.": "The foundation of every digital strategy in Haiti. Maximum reach, precise targeting.",
+    "La base de toute stratégie digitale en Haïti. Couverture maximale, ciblage précis.": "Where most digital ads in Haiti run. Maximum reach, precise targeting.",
     "Feed statique": "Static feed",
     "Carrousel": "Carousel",
     "Reels / Stories": "Reels / Stories",
-    "Toucher la génération 18-35 avec du contenu natif, authentique et performant.": "Reach the 18-35 generation with native content that performs.",
+    "Toucher la génération 18-35 avec du contenu natif, authentique et performant.": "Reach the 18 to 35 audience with native content that performs.",
     "Créateurs locaux": "Local creators",
     "Conversations en temps réel, positionnement de marque, veille concurrentielle.": "Real-time conversations, brand positioning, competitor watch.",
     "Engagement organique": "Organic engagement",
-    "Vidéo long format, pré-roll, Shorts. Construire la notoriété avec du contenu durable.": "Long-form video, pre-roll, Shorts. Build awareness with content that lasts.",
+    "Vidéo long format, pré-roll, Shorts. Construire la notoriété avec du contenu durable.": "Long-form video, pre-roll, Shorts. Content that keeps working past launch week.",
 
     // Comparison
     "Agence traditionnelle vs. HaitiBrand Illimité": "Traditional agency vs. HaitiBrand Unlimited",
@@ -2192,9 +2192,9 @@
     "Un forfait pour chaque étape de croissance": "A plan for every stage of growth",
     "Commencez là où vous êtes. Évoluez quand vous êtes prêt.": "Start where you are. Level up when you're ready.",
     "Starter": "Starter",
-    "Entrepreneurs et indépendants": "Solopreneurs and freelancers",
+    "Entrepreneurs et indépendants": "Founders and freelancers",
     "par mois": "per month",
-    "Présence sociale professionnelle, gérée de A à Z. Idéal pour les marques qui veulent poster régulièrement sans gérer la production.": "A polished social presence, handled end to end. Built for brands that want to post consistently without managing production.",
+    "Présence sociale professionnelle, gérée de A à Z. Idéal pour les marques qui veulent poster régulièrement sans gérer la production.": "A professional social presence, handled end to end. Built for brands that want to post consistently without running production.",
     "12 posts réseaux sociaux par mois (3/semaine)": "12 social posts per month (3 per week)",
     "1 concept de campagne créative": "1 creative campaign concept",
     "Calendrier de contenu mensuel": "Monthly content calendar",
@@ -2239,7 +2239,7 @@
     "Prénom": "First name",
     "Nom de votre marque": "Your brand name",
     "Email": "Email",
-    "Téléphone WhatsApp": "WhatsApp phone",
+    "Téléphone WhatsApp": "WhatsApp number",
     "Secteur d'activité": "Industry",
     "Forfait qui vous intéresse": "Plan you're interested in",
     "Illimité — à partir de $2,500/mois": "Unlimited, starting at $2,500/month",
