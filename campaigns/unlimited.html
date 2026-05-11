@@ -123,6 +123,29 @@
 
   .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
 
+  /* LANGUAGE SWITCHER */
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    user-select: none;
+  }
+  .lang-btn {
+    background: none;
+    border: none;
+    padding: 6px 6px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .lang-btn:hover { color: var(--dark); }
+  .lang-btn.active { color: var(--dark); }
+  .lang-sep { color: var(--text-muted); font-size: 12px; opacity: 0.5; }
+
   /* HERO */
   .hero {
     padding: 140px var(--px) 80px;
@@ -1370,6 +1393,11 @@
     <a href="#platforms" class="text-link">Plateformes</a>
     <a href="#pricing" class="text-link">Tarifs</a>
     <a href="https://haitibrand.co" target="_blank" rel="noopener" class="nav-cta">Visiter notre site</a>
+    <div class="lang-switcher" role="group" aria-label="Language">
+      <button type="button" class="lang-btn active" data-lang="fr" onclick="setLang('fr')" aria-label="Français">FR</button>
+      <span class="lang-sep" aria-hidden="true">·</span>
+      <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+    </div>
   </div>
 </nav>
 
@@ -1850,15 +1878,16 @@
 
 <script>
   // Hero headline flip — rotates the highlighted phrase every 3 seconds.
+  // Re-reads data-words each cycle so the language switcher can swap the list.
   (function() {
     var el = document.getElementById('flipText');
     if (!el || !el.dataset.words) return;
-    var words = el.dataset.words.split('|');
-    if (words.length < 2) return;
-    var i = 0;
     var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+    var i = 0;
     setInterval(function() {
+      var words = (el.dataset.words || '').split('|');
+      if (words.length < 2) return;
       i = (i + 1) % words.length;
       el.style.opacity = '0';
       el.style.transform = 'translateY(-10px)';
@@ -2027,6 +2056,286 @@
       }
     }
   });
+</script>
+
+<!-- i18n: French is the default markup. Toggling to EN swaps text nodes via a dict. -->
+<script>
+(function () {
+  var T = {
+    // Nav
+    "Services": "Services",
+    "30 jours": "30 days",
+    "Plateformes": "Platforms",
+    "Tarifs": "Pricing",
+    "Visiter notre site": "Visit our site",
+
+    // Hero
+    "Places limitées": "Limited seats",
+    "Cohorte 2026": "2026 cohort",
+    "Votre équipe créative et média,": "Your creative and media team,",
+    "en abonnement": "on subscription",
+    "Un seul forfait mensuel. Design illimité, campagnes chaque semaine, publicités sur Meta, TikTok et X. Pas de contrat par projet.": "One monthly subscription. Unlimited design, fresh campaigns every week, paid ads on Meta, TikTok and X. No per-project contracts.",
+    "Réservez 15 minutes avec nous": "Book 15 minutes with us",
+    "Remplir le formulaire": "Fill out the form",
+
+    // Stats
+    "Designs livrés": "Designs delivered",
+    "Campagnes lancées": "Campaigns launched",
+    "Plateformes activées": "Platforms live",
+    "Créateurs UGC": "UGC creators",
+
+    // Services
+    "Tout est inclus dans le forfait": "Everything is included",
+    "Cliquez sur un service pour voir le détail.": "Click a service to see the details.",
+    "Design illimité": "Unlimited design",
+    "Demandes illimitées, livrées en 24 à 48 heures.": "Unlimited requests, delivered in 24 to 48 hours.",
+    "Posts réseaux sociaux (carrousels, stories, reels covers)": "Social posts (carousels, stories, reel covers)",
+    "Bannières web et email": "Web and email banners",
+    "Supports print (flyers, affiches, roll-ups)": "Print materials (flyers, posters, roll-ups)",
+    "Déclinaisons de marque et adaptations": "Brand variations and adaptations",
+    "Révisions illimitées jusqu'à validation": "Unlimited revisions until you sign off",
+    "Campagnes créatives": "Creative campaigns",
+    "Concepts de campagne livrés chaque semaine.": "Campaign concepts delivered every week.",
+    "Concepts créatifs originaux avec direction artistique": "Original concepts with art direction",
+    "Copywriting en français, créole et anglais": "Copywriting in French, Creole and English",
+    "Storyboards pour vidéos et reels": "Storyboards for videos and reels",
+    "Déclinaison sur tous les canaux (digital, print, OOH)": "Adaptations across every channel (digital, print, OOH)",
+    "Média payant": "Paid media",
+    "Publicités produites et gérées sur Meta, TikTok et X.": "Ads produced and managed on Meta, TikTok and X.",
+    "Création des audiences et ciblage géographique Haïti": "Audience setup and geo-targeting for Haiti",
+    "A/B testing des créatives": "Creative A/B testing",
+    "Optimisation quotidienne des budgets": "Daily budget optimization",
+    "Reporting hebdomadaire avec ROAS et coût par résultat": "Weekly reporting with ROAS and cost per result",
+    "Contenu UGC": "UGC content",
+    "Du contenu créé par de vrais créateurs haïtiens.": "Content shot by real Haitian creators.",
+    "Casting et briefing des créateurs": "Creator casting and briefing",
+    "Production de vidéos authentiques pour ads": "Real-world video production for ads",
+    "Formats optimisés par plateforme (9:16, 1:1, 16:9)": "Formats optimized per platform (9:16, 1:1, 16:9)",
+    "Droits d'utilisation commerciale inclus": "Commercial usage rights included",
+    "Rapports mensuels": "Monthly reports",
+    "Chaque dollar relié à votre chiffre d'affaires.": "Every dollar tied back to your revenue.",
+    "Dashboard interactif avec KPIs en temps réel": "Interactive dashboard with real-time KPIs",
+    "Attribution des conversions par canal": "Conversion attribution by channel",
+    "Recommandations stratégiques pour le mois suivant": "Strategic recommendations for the next month",
+    "Analyse concurrentielle mensuelle": "Monthly competitive analysis",
+    "Livraison rapide": "Fast turnaround",
+    "Pas de file d'attente. Votre équipe dédiée.": "No waiting line. Your dedicated team.",
+    "Délai standard : 24-48h par demande": "Standard turnaround: 24 to 48 hours per request",
+    "Canal Slack ou WhatsApp dédié": "Dedicated Slack or WhatsApp channel",
+    "Project manager assigné à votre compte": "Project manager assigned to your account",
+    "Nombre de demandes actives illimité": "Unlimited active requests",
+    "Voir le détail": "See the details",
+
+    // Timeline
+    "À quoi ressemblent 30 jours avec HaitiBrand": "What 30 days with HaitiBrand looks like",
+    "Aperçu réel d'une marque inscrite au forfait illimité.": "A real snapshot of a brand on the unlimited plan.",
+    "Semaine 1": "Week 1",
+    "Semaine 2": "Week 2",
+    "Semaine 3": "Week 3",
+    "Semaine 4": "Week 4",
+    "Onboarding et premier sprint": "Onboarding and first sprint",
+    "Audit de votre présence actuelle, alignement stratégique, premiers designs livrés.": "Audit of your current presence, strategic alignment, first designs delivered.",
+    "Audit digital complet": "Full digital audit",
+    "Stratégie de campagne": "Campaign strategy",
+    "15 visuels réseaux sociaux": "15 social visuals",
+    "Calendrier éditorial mois 1": "Month 1 content calendar",
+    "Première campagne en production": "First campaign in production",
+    "Lancement des premières publicités, casting UGC, optimisation des audiences.": "First ads launched, UGC casting, audience optimization.",
+    "Campagne Meta lancée": "Meta campaign live",
+    "2 vidéos UGC produites": "2 UGC videos produced",
+    "30+ visuels supplémentaires": "30+ additional visuals",
+    "Premiers résultats A/B": "First A/B results",
+    "Montée en puissance": "Scaling up",
+    "Deuxième plateforme activée, scaling des créatives performantes, nouvelles audiences.": "Second platform activated, scaling top-performing creatives, new audiences.",
+    "TikTok Ads activé": "TikTok Ads live",
+    "Rotation des créatives": "Creative rotation",
+    "4 vidéos UGC supplémentaires": "4 more UGC videos",
+    "Déclinaisons campagne print": "Print campaign adaptations",
+    "Optimisation et rapport": "Optimization and report",
+    "Analyse complète du premier mois, recommandations pour le mois suivant.": "Full month-one analysis, recommendations for the next month.",
+    "Rapport de performance complet": "Full performance report",
+    "Recommandations mois 2": "Month 2 recommendations",
+    "Nouvelles audiences identifiées": "New audiences identified",
+    "120+ designs livrés au total": "120+ designs delivered total",
+
+    // Platforms
+    "Vos campagnes, sur chaque plateforme": "Your campaigns, on every platform",
+    "Sélectionnez une plateforme pour voir les formats que nous y produisons.": "Pick a platform to see the formats we produce there.",
+    "La base de toute stratégie digitale en Haïti. Couverture maximale, ciblage précis.": "The foundation of every digital strategy in Haiti. Maximum reach, precise targeting.",
+    "Feed statique": "Static feed",
+    "Carrousel": "Carousel",
+    "Reels / Stories": "Reels / Stories",
+    "Toucher la génération 18-35 avec du contenu natif, authentique et performant.": "Reach the 18-35 generation with native content that performs.",
+    "Créateurs locaux": "Local creators",
+    "Conversations en temps réel, positionnement de marque, veille concurrentielle.": "Real-time conversations, brand positioning, competitor watch.",
+    "Engagement organique": "Organic engagement",
+    "Vidéo long format, pré-roll, Shorts. Construire la notoriété avec du contenu durable.": "Long-form video, pre-roll, Shorts. Build awareness with content that lasts.",
+
+    // Comparison
+    "Agence traditionnelle vs. HaitiBrand Illimité": "Traditional agency vs. HaitiBrand Unlimited",
+    "Agence traditionnelle": "Traditional agency",
+    "Devis pour chaque projet": "A separate quote for every project",
+    "Délai de 2 à 4 semaines par campagne": "2 to 4 weeks per campaign",
+    "Révisions facturées en supplément": "Revisions billed on top",
+    "Pas de visibilité sur les résultats": "No visibility into results",
+    "Contrat annuel rigide": "Rigid annual contract",
+    "Équipe partagée entre 20+ clients": "Team split across 20+ clients",
+    "HaitiBrand Illimité": "HaitiBrand Unlimited",
+    "Un forfait, demandes illimitées": "One subscription, unlimited requests",
+    "Livraison en 24 à 48 heures": "24 to 48 hour turnaround",
+    "Révisions illimitées incluses": "Unlimited revisions included",
+    "Rapport mensuel relié au chiffre d'affaires": "Monthly report tied to your revenue",
+    "Flexibilité mensuelle, sans engagement long": "Monthly flexibility, no long-term lock-in",
+    "Équipe dédiée, cohorte limitée à 8 marques": "Dedicated team, cohort capped at 8 brands",
+
+    // Pricing
+    "Un forfait pour chaque étape de croissance": "A plan for every stage of growth",
+    "Commencez là où vous êtes. Évoluez quand vous êtes prêt.": "Start where you are. Level up when you're ready.",
+    "Starter": "Starter",
+    "Entrepreneurs et indépendants": "Solopreneurs and freelancers",
+    "par mois": "per month",
+    "Présence sociale professionnelle, gérée de A à Z. Idéal pour les marques qui veulent poster régulièrement sans gérer la production.": "A polished social presence, handled end to end. Built for brands that want to post consistently without managing production.",
+    "12 posts réseaux sociaux par mois (3/semaine)": "12 social posts per month (3 per week)",
+    "1 concept de campagne créative": "1 creative campaign concept",
+    "Calendrier de contenu mensuel": "Monthly content calendar",
+    "Project manager dédié": "Dedicated project manager",
+    "Révisions incluses": "Revisions included",
+    "Choisir ce forfait": "Choose this plan",
+    "Croissance": "Croissance",
+    "Petites entreprises": "Small businesses",
+    "Tout le Starter, plus des campagnes publicitaires et email marketing gérés par notre équipe.": "Everything in Starter, plus paid ads and email marketing run by our team.",
+    "Tout le forfait Starter inclus": "Everything in Starter included",
+    "$100 budget Facebook Ads, géré par HB": "$100 Facebook Ads budget, managed by HB",
+    "1 campagne email par mois via Resend": "1 email campaign per month via Resend",
+    "Rapport de performance mensuel": "Monthly performance report",
+    "A/B testing sur les créatives publicitaires": "A/B testing on ad creatives",
+    "Illimité": "Unlimited",
+    "À partir de": "Starting at",
+    "Votre département créatif complet, externalisé. Design illimité, ads multi-plateformes, email marketing, automatisation.": "Your full creative department, outsourced. Unlimited design, multi-platform ads, email marketing, automation.",
+    "Demandes de design illimitées, 24-48h": "Unlimited design requests, 24 to 48h",
+    "4 campagnes créatives par mois": "4 creative campaigns per month",
+    "$200 budget ads inclus (Facebook + YouTube)": "$200 ads budget included (Facebook + YouTube)",
+    "8 campagnes email par mois via Resend": "8 email campaigns per month via Resend",
+    "Audience setup et segmentation": "Audience setup and segmentation",
+    "Workflow ManyChat intégré": "ManyChat workflow integrated",
+    "Amplification sur page publicitaire partenaire": "Amplification on partner ad page",
+    "Frais d'onboarding unique de $500 pour Croissance et Illimité": "One-time $500 onboarding fee for Croissance and Unlimited",
+
+    // CTA
+    "Tout ce que vous venez de voir, livré chaque mois": "Everything you just saw, delivered every month",
+    "Un appel de 15 minutes pour confirmer que le forfait illimité correspond à votre marque et vos objectifs.": "A 15-minute call to confirm the unlimited plan fits your brand and your goals.",
+    "La cohorte ferme à 8 marques": "The cohort closes at 8 brands",
+
+    // Mobile CTA
+    "Réservez 15 minutes": "Book 15 minutes",
+
+    // Footer
+    "Confidentialité": "Privacy",
+    "Conditions": "Terms",
+
+    // Modal
+    "Dites-nous-en plus sur votre marque": "Tell us more about your brand",
+    "On vous recontacte dans les 24 heures avec une recommandation pour votre cohorte.": "We'll come back within 24 hours with a recommendation for your cohort.",
+    "Prénom": "First name",
+    "Nom de votre marque": "Your brand name",
+    "Email": "Email",
+    "Téléphone WhatsApp": "WhatsApp phone",
+    "Secteur d'activité": "Industry",
+    "Forfait qui vous intéresse": "Plan you're interested in",
+    "Illimité — à partir de $2,500/mois": "Unlimited, starting at $2,500/month",
+    "Croissance — $1,000/mois": "Croissance, $1,000/month",
+    "Starter — $500/mois": "Starter, $500/month",
+    "Pas sûr, conseillez-moi": "Not sure, advise me",
+    "Envoyer mes infos": "Send my info",
+    "C'est noté": "Got it",
+    "On vous a envoyé un email avec deux options pour avancer : réserver l'appel de 15 minutes, ou remplir le brief complet. À tout de suite dans votre boîte de réception.": "We just sent you an email with two ways to move forward: book the 15-minute call, or fill out the full brief. Check your inbox.",
+    "Quelque chose n'a pas fonctionné. Réessayez ou écrivez-nous à digital@haitibrand.co": "Something went wrong. Please try again or email us at digital@haitibrand.co",
+    "Envoi en cours…": "Sending…"
+  };
+
+  // flipText words FR/EN
+  var FLIP_FR = "en abonnement|en illimité|sans engagement";
+  var FLIP_EN = "on subscription|unlimited|no contract";
+
+  // Industry placeholder
+  var PH_FR = "ex. restauration, mode, services financiers...";
+  var PH_EN = "e.g. restaurant, fashion, financial services...";
+
+  // Titles
+  var TITLE_FR = "HaitiBrand — Votre équipe créative et média, en abonnement";
+  var TITLE_EN = "HaitiBrand — Your creative and media team, on subscription";
+
+  // Original-text storage keyed by text node
+  var originalMap = new WeakMap();
+
+  function walkText(node, callback) {
+    if (node.nodeType === 3) { callback(node); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.tagName;
+    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
+    if (node.classList && (node.classList.contains('lang-btn') || node.classList.contains('lang-sep'))) return;
+    for (var i = 0; i < node.childNodes.length; i++) {
+      walkText(node.childNodes[i], callback);
+    }
+  }
+
+  function applyLang(lang) {
+    walkText(document.body, function (textNode) {
+      var current = textNode.textContent;
+      if (!current || !current.trim()) return;
+      if (!originalMap.has(textNode)) {
+        originalMap.set(textNode, current);
+      }
+      var original = originalMap.get(textNode);
+      var trimmed = original.trim();
+      if (lang === 'en') {
+        var en = T[trimmed];
+        if (en) {
+          var leading = original.match(/^\s*/)[0];
+          var trailing = original.match(/\s*$/)[0];
+          textNode.textContent = leading + en + trailing;
+        }
+      } else {
+        textNode.textContent = original;
+      }
+    });
+
+    // flipText words
+    var flipEl = document.getElementById('flipText');
+    if (flipEl) {
+      flipEl.dataset.words = (lang === 'en') ? FLIP_EN : FLIP_FR;
+      var current = (flipEl.dataset.words || '').split('|')[0];
+      flipEl.textContent = current;
+    }
+
+    // Industry placeholder
+    var phEl = document.getElementById('cf_industry');
+    if (phEl) {
+      phEl.placeholder = (lang === 'en') ? PH_EN : PH_FR;
+    }
+
+    // Document attributes + meta
+    document.documentElement.lang = lang;
+    document.title = (lang === 'en') ? TITLE_EN : TITLE_FR;
+  }
+
+  window.setLang = function (lang) {
+    if (lang !== 'en' && lang !== 'fr') lang = 'fr';
+    applyLang(lang);
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('active', btns[i].dataset.lang === lang);
+    }
+    try { localStorage.setItem('hb_lang', lang); } catch (e) {}
+  };
+
+  // Init from localStorage on load
+  document.addEventListener('DOMContentLoaded', function () {
+    var saved = 'fr';
+    try { saved = localStorage.getItem('hb_lang') || 'fr'; } catch (e) {}
+    if (saved === 'en') window.setLang('en');
+  });
+})();
 </script>
 
 </body>
