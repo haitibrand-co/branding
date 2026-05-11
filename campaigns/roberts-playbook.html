@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Playbook — Roberts Févry Morency x HaitiBrand</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0F0F0F;
+    color: #F5F5F5;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+  .header {
+    text-align: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 40px;
+  }
+  .header img {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .header p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+  }
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #E9E14E;
+    background: rgba(233,225,78,0.1);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .caption-card {
+    background: #1A1A1A;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .caption-card .card-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+  .caption-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 12px;
+  }
+  .caption-card p:last-child {
+    margin-bottom: 0;
+  }
+  .caption-card .hook {
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+  .caption-card .cta-line {
+    color: #E9E14E;
+    font-weight: 500;
+  }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .story-frame {
+    background: #1A1A1A;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .story-frame .frame-number {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E9E14E;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .story-frame .visual-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .story-frame .story-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 1.5;
+  }
+  .asset-box {
+    background: linear-gradient(135deg, rgba(233,225,78,0.08), rgba(233,225,78,0.02));
+    border: 1px solid rgba(233,225,78,0.15);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .asset-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .asset-box p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    margin: 6px;
+  }
+  .btn-primary {
+    background: #E9E14E;
+    color: #0F0F0F;
+  }
+  .btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: #F5F5F5;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .link-box {
+    background: #1A1A1A;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .link-box .link-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .link-box a {
+    color: #E9E14E;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    word-break: break-all;
+  }
+  .note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 40px;
+  }
+  @media (max-width: 480px) {
+    .container { padding: 28px 16px 48px; }
+    .header h1 { font-size: 24px; }
+    .caption-card { padding: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <img src="https://raw.githubusercontent.com/haitibrand-co/hbr-email-assets/main/hb_wordmark_white.svg" alt="HaitiBrand" />
+    <h1>Campaign Playbook</h1>
+    <p>Roberts Févry Morency x HaitiBrand — Unlimited Ads Campaign</p>
+  </div>
+
+  <!-- CAMPAIGN LINK -->
+  <div class="section">
+    <span class="section-label">Campaign Link</span>
+    <div class="link-box">
+      <div class="link-label">Use this link in your bio and story</div>
+      <a href="https://haitibrand-co.github.io/branding/campaigns/unlimited.html">haitibrand-co.github.io/branding/campaigns/unlimited.html</a>
+    </div>
+  </div>
+
+  <!-- FEED POST -->
+  <div class="section">
+    <span class="section-label">Feed Post</span>
+    <h2>Pick one of these captions</h2>
+
+    <div class="caption-card">
+      <div class="card-label">Option A — Lead with the numbers</div>
+      <p class="hook">120 designs delivered. 18 campaigns launched. 4 platforms running. 6 UGC creators producing content. That was one month. One team. One flat fee.</p>
+      <p>I know this team personally and I've seen what they build behind the scenes for brands across Haiti and the Caribbean. @haitibrand.co is offering something I haven't seen anyone else do: unlimited creative, full ad management on Meta, TikTok, X and YouTube, real UGC, and a monthly report that shows exactly where your money went.</p>
+      <p>No long-term contracts. No per-project billing. One subscription, one team that handles everything.</p>
+      <p>If you run a brand and you've been trying to do this with freelancers or a small team that can't keep up, look at this.</p>
+      <p class="cta-line">Link in my bio 👆 @haitibrand.co</p>
+    </div>
+
+    <div class="caption-card">
+      <div class="card-label">Option B — Personal endorsement</div>
+      <p class="hook">I don't post about brands unless I mean it. This one I mean.</p>
+      <p>@haitibrand.co just launched an unlimited subscription for brands that need real creative and real ads, not templates, not Canva, not one post a week and a prayer. We're talking a full team doing unlimited design, weekly campaign launches across Meta, TikTok, X and YouTube, UGC from actual creators, and a monthly performance report so you see every dollar working.</p>
+      <p>I've seen what 30 days looks like with this team. 120+ designs, 18 campaigns, 4 platforms live. The output is insane and it all runs under one flat monthly fee.</p>
+      <p class="cta-line">Check the link in my bio. Your brand will thank you later 🔗 @haitibrand.co</p>
+    </div>
+  </div>
+
+  <!-- STORY POSTS -->
+  <div class="section">
+    <span class="section-label">Story Posts</span>
+    <h2>Post these as a 3-frame sequence</h2>
+
+    <div class="story-grid">
+      <div class="story-frame">
+        <div class="frame-number">Story 1 — The Hook</div>
+        <div class="visual-note">Use the campaign GIF or hero visual</div>
+        <div class="story-text">Your brand is spending money on ads with no team behind them. What if you had one for a flat monthly fee?</div>
+      </div>
+
+      <div class="story-frame">
+        <div class="frame-number">Story 2 — The Proof</div>
+        <div class="visual-note">Use one of the campaign design visuals</div>
+        <div class="story-text">120+ designs in 30 days. Campaigns on Meta, TikTok, X, YouTube. UGC from real creators. Monthly reports. One team. One subscription.</div>
+      </div>
+
+      <div class="story-frame">
+        <div class="frame-number">Story 3 — The CTA</div>
+        <div class="visual-note">Casual selfie or talking to camera. Add link sticker.</div>
+        <div class="story-text">I know this team. The work is real and the results are real. Tap the link if your brand needs this 👆🔥</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REEL CAPTION (BONUS) -->
+  <div class="section">
+    <span class="section-label">Reel / Video Caption</span>
+    <h2>If you film a quick video talking about it</h2>
+
+    <div class="caption-card">
+      <div class="card-label">Reel caption</div>
+      <p class="hook">One team. One monthly fee. Unlimited everything for your brand.</p>
+      <p>Design, ads, UGC, reports. @haitibrand.co is doing something nobody else in Haiti is doing right now. I've seen the behind the scenes and the results are real. Link in bio if your brand needs this.</p>
+      <p class="cta-line">#unlimitedads #haitibrand #branding #digitalmarketing #caribbeanbusiness</p>
+    </div>
+  </div>
+
+  <!-- ASSETS -->
+  <div class="section">
+    <span class="section-label">Assets</span>
+    <div class="asset-box">
+      <h3>Download Campaign Visuals</h3>
+      <p>GIF, hero banner, and campaign design samples</p>
+      <a href="https://we.tl/t-GYPO1jdZzFGXgHTN" class="btn btn-primary" style="display:block;width:240px;margin:6px auto;text-align:center;">Download Files</a>
+      <a href="https://haitibrand-co.github.io/branding/campaigns/unlimited.html" class="btn btn-secondary" style="display:block;width:240px;margin:6px auto;text-align:center;">View Campaign Page</a>
+    </div>
+  </div>
+
+  <div class="note">
+    Tag @haitibrand.co on every post. Add the campaign link (haitibrand-co.github.io/branding/campaigns/unlimited.html) to your bio and use the link sticker on stories. Post the feed caption first, then the story sequence within 30 minutes for maximum reach.
+  </div>
+
+</div>
+</body>
+</html>
